@@ -3,6 +3,6 @@
 
 #include <string>
 
-bool createEntryInDatabase(std::string databaseEntry, std::string databaseName);
+void createEntryInDatabase(std::string databaseEntry, std::string databaseName);
 
 #endif
