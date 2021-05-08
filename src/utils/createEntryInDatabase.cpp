@@ -3,19 +3,23 @@
 #include <iostream>
 #include "createEntryInDatabase.h"
 
-void createEntryInDatabase(std::string databaseEntry, std::string databaseName)
+bool createEntryInDatabase(std::string databaseEntry, std::string databaseName)
 {
-    std::ofstream fileStream;
-    std::string databasePath = "src/databasee/" + databaseName + ".txt";
-
-    // std::cout << "FileStream: " << databasePath << std::endl;
+    std::string databasePath = "src/database/" + databaseName + ".txt";
 
     // Open file for append only
-    fileStream.open(databasePath, std::ios::app);
+    std::ofstream fileStream(databasePath, std::ios::app);
+    
+    // Return false if there is an error
+    if(!fileStream) {
+        return false;
+    }
 
     // Add a new entry to the file with newline
     fileStream << databaseEntry << "\n";
 
     // Close file stream
     fileStream.close();
+
+    return true;
 };
