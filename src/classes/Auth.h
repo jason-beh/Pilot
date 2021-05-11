@@ -6,22 +6,23 @@
 class Auth
 {
 private:
-    Auth();
-
-    std::string authEmail;
+    std::string authUsername;
     std::string authPassword;
     bool isLoggedIn;
 
-    void setAuthEmail(std::string email);
+    void setAuthUsername(std::string username);
     void setAuthPassword(std::string password);
     void setIsLoggedIn(bool isLoggedInStatus);
 
-    bool getIsLoggedIn();
+public:
+    Auth();
 
-    bool signUp(std::string email, std::string password);
-    bool login(std::string email, std::string password);
+    bool getIsLoggedIn();
+    bool signUp(std::string userType);
+    bool login(std::string userType);
 
     ~Auth();
+
 };
 
 #endif

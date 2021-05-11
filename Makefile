@@ -1,5 +1,5 @@
 main:
-	g++ src/main.cpp src/controllers/AuthController.cpp src/utils/createEntryInDatabase.cpp src/utils/searchEntryInDatabase.cpp -o build/main
+	g++ src/main.cpp src/controllers/AuthController.cpp src/utils/createEntryInDatabase.cpp src/utils/searchEntryInDatabase.cpp  src/classes/User.cpp src/classes/Driver.cpp src/classes/Rider.cpp src/classes/Auth.cpp -o build/main
 	./build/main
 
 test:
