@@ -4,13 +4,13 @@
 
 #include "../classes/Rider.h"
 #include "../classes/User.h"
-#include "../utils/getUserNumberedInput.h"
+#include "../utils/generateUserOptions.h"
 #include "AuthController.h"
 
 void RiderController(Rider* rider) {
     std::cout << std::endl;
     std::cout << "--------------------" << std::endl;
-    std::cout << "Driver's Menu" << std::endl;
+    std::cout << "Rider's Menu" << std::endl;
     std::cout << "--------------------" << std::endl << std::endl;
 
     std::cout << "Current Balance: AUD " << rider->getCurrentBalance()
@@ -22,14 +22,14 @@ void RiderController(Rider* rider) {
     std::cout << "3. View Ride History" << std::endl;
     std::cout << "4. Change Password" << std::endl << std::endl;
 
-    int riderDecision = getUserNumberedInput(4);
+    int riderDecision = generateUserOptions(4);
 
     switch (riderDecision) {
         case 1:
             std::cout << "Book Ride" << std::endl;
             break;
         case 2:
-            std::cout << "Top Up" << std::endl;
+            rider->topUp();
             break;
         case 3:
             std::cout << "View Ride History" << std::endl;
@@ -38,4 +38,6 @@ void RiderController(Rider* rider) {
             std::cout << "Change Password" << std::endl;
             break;
     }
+
+    RiderController(rider);
 }

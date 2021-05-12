@@ -1,9 +1,9 @@
-#include "getUserNumberedInput.h"
+#include "generateUserOptions.h"
 
 #include <iostream>
 #include <string>
 
-int getUserNumberedInput(int numOptions) {
+int generateUserOptions(int numOptions) {
     bool prompt = true;
     int optionChosen;
 

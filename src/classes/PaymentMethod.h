@@ -13,7 +13,7 @@ private:
 public:
     PaymentMethod();
 
-    virtual void pay()=0;
+    virtual bool pay(int amount)=0;
 
     ~PaymentMethod();
 

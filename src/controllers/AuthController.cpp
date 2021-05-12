@@ -4,7 +4,7 @@
 #include "../classes/Rider.h"
 #include "RiderController.h"
 
-#include "../utils/getUserNumberedInput.h"
+#include "../utils/generateUserOptions.h"
 
 #include <fstream>
 #include <iostream>
@@ -23,7 +23,6 @@ void AuthController()
             rider->authDetails->login("Rider");
         else 
             rider->authDetails->signUp("Rider");
-
 
         RiderController(rider);
 
@@ -47,7 +46,7 @@ bool AuthIsRiderOrDriver() {
     std::cout << "1. Rider" << std::endl;
     std::cout << "2. Driver" << std::endl << std::endl;
 
-    int optionChosen = getUserNumberedInput(2);
+    int optionChosen = generateUserOptions(2);
     bool isRider = (optionChosen == 1);
 
     return isRider;
@@ -60,7 +59,7 @@ bool AuthIsUserWantsToLogin() {
     std::cout << "1. Login" << std::endl;
     std::cout << "2. Signup" << std::endl << std::endl;
 
-    int optionChosen = getUserNumberedInput(2);
+    int optionChosen = generateUserOptions(2);
     bool userWantsToLogin = (optionChosen == 1);
 
     return userWantsToLogin;

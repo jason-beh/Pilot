@@ -14,6 +14,8 @@ public:
 
     int getCurrentBalance();
 
+    bool topUp();
+
     ~Rider();
 
 private:
@@ -22,9 +24,12 @@ private:
     int riderId;
 
     int currentBalance;
+
+    void setCurrentBalance(int amount);
+
     // vector<Ride*> rideHistory
 
-    bool topUp(int amount);
+    
     // Ride* bookRide(string destination, string origin, Driver* driver)
 };
 

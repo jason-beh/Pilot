@@ -12,7 +12,7 @@ private:
 public:
     CreditCard();
 
-    virtual void pay();
+    virtual bool pay(int amount);
 
     ~CreditCard();
 
