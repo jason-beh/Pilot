@@ -9,7 +9,7 @@ int Driver::globalDriverId = 1;
 
 Driver::Driver() {
 
-    driver_id = globalDriverId++;
+    driverId = globalDriverId++;
 
     isAvailableToDrive = false;
     currentEarnings = 0;

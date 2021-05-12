@@ -21,13 +21,13 @@ public:
 private:
     static int globalDriverId;
 
-    int driver_id;
+    int driverId;
 
     bool isAvailableToDrive;
     int currentEarnings;
     bool isDriving;
     // Vehicle* driverVehicle;
-    // vector<Bookings*> bookingHistory
+    // vector<Ride*> rideHistory
 
 };
 

@@ -12,18 +12,20 @@ class Rider: public User
 public:
     Rider();
 
+    int getCurrentBalance();
+
     ~Rider();
 
 private:
     static int globalRiderId;
 
-    int rider_id;
+    int riderId;
 
     int currentBalance;
-    // vector<Bookings*> bookingHistory
+    // vector<Ride*> rideHistory
 
     bool topUp(int amount);
-    // Booking* bookRide(string destination, string origin, Driver* driver)
+    // Ride* bookRide(string destination, string origin, Driver* driver)
 };
 
 #endif

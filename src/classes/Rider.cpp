@@ -9,10 +9,14 @@ using namespace std;
 int Rider::globalRiderId = 1;
 
 Rider::Rider() {
-    rider_id = globalRiderId++;
+    riderId = globalRiderId++;
 
     int currentBalance = 0;
     authDetails = new Auth();
+}
+
+int Rider::getCurrentBalance() {
+    return currentBalance;
 }
 
 bool Rider::topUp(int amount) {

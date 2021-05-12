@@ -8,7 +8,7 @@ using namespace std;
 int User::globalUserId = 1;
 
 User::User() {
-    user_id = globalUserId++;
+    userId = globalUserId++;
 
     authDetails = new Auth();
 }

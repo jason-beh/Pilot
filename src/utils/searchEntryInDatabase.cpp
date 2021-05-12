@@ -14,7 +14,7 @@ bool searchEntryInDatabase(std::string databaseEntry, std::string databaseName)
     while (getline(fileStream, currentLine))
     {
         // Break the while loop if the current line contains databaseEntry
-        if (currentLine.find(databaseEntry) != std::string::npos)
+        if (currentLine == databaseEntry)
         {
             isEntryFound = true;
             break;

@@ -4,6 +4,10 @@
 #include "../classes/User.h"
 #include <string>
 
-std::string AuthController();
+void AuthController();
+
+bool AuthIsRiderOrDriver();
+bool AuthIsUserWantsToLogin();
+
 
 #endif

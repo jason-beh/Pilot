@@ -14,7 +14,7 @@ public:
 
     static int globalUserId;
 
-    int user_id;
+    int userId;
 
     std::string name;
     Auth* authDetails;
