@@ -2,8 +2,9 @@
 #include "../classes/User.h"
 #include "../classes/Driver.h"
 #include "../classes/Rider.h"
-
 #include "RiderController.h"
+
+#include "../utils/getUserNumberedInput.h"
 
 #include <fstream>
 #include <iostream>
@@ -38,9 +39,6 @@ void AuthController()
 }
 
 bool AuthIsRiderOrDriver() {
-    bool isRider = false;
-    int optionChosen = 0;
-
     std::cout << "---------------------------------------" << std::endl;
     std::cout << "Welcome to Pilot!" << std::endl;
     std::cout << "---------------------------------------" << std::endl;
@@ -49,41 +47,21 @@ bool AuthIsRiderOrDriver() {
     std::cout << "1. Rider" << std::endl;
     std::cout << "2. Driver" << std::endl << std::endl;
 
-    while(true) {
-        std::cout << "Enter decision: ";
-        std::cin >> optionChosen;
-
-        if(optionChosen == 1 || optionChosen == 2) {
-            isRider = (optionChosen == 1);
-            break;
-        }
-
-        std::cout << "Please enter 1 or 2" << std::endl;
-    }
+    int optionChosen = getUserNumberedInput(2);
+    bool isRider = (optionChosen == 1);
 
     return isRider;
 }
 
 bool AuthIsUserWantsToLogin() {
-    int optionChosen = 0;
-    bool userWantsToLogin = false;
 
     std::cout << "Would you like to sign up for a new account or login?" << std::endl << std::endl;
 
     std::cout << "1. Login" << std::endl;
     std::cout << "2. Signup" << std::endl << std::endl;
 
-    while(true) {
-        std::cout << "Enter decision: ";
-        std::cin >> optionChosen; 
-
-        if(optionChosen == 1 || optionChosen == 2) {
-            userWantsToLogin = (optionChosen == 1);
-            break;
-        }
-
-        std::cout << "Please enter 1 or 2" << std::endl;
-    }
+    int optionChosen = getUserNumberedInput(2);
+    bool userWantsToLogin = (optionChosen == 1);
 
     return userWantsToLogin;
 }
