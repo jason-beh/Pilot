@@ -14,17 +14,12 @@ class Rider: public User
         int getCurrentBalance();
         void setCurrentBalance(int amount);
         void getBalanceFromDB();
-
         bool topUp();
-
         void bookRide();
 
         ~Rider();
 
     private:
-        static int globalRiderId;
-        std::string hello;
-        int riderId;
         int currentBalance;
 };
 

@@ -26,7 +26,7 @@ void riderController(Rider* rider) {
 
     switch (riderDecision) {
         case 1:
-            std::cout << "Book Ride" << std::endl;
+            rider->bookRide();
             break;
         case 2:
             rider->topUp();

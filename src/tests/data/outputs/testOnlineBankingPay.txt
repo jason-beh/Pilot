@@ -1,0 +1,21 @@
+
+Please choose the your preferred bank from the list below.
+1. Commonwealth Bank
+2. ANZ Bank
+3. Westpac Bank
+4. Bank of Queensland
+5. National Australia Bank
+
+Enter decision: Please enter 1, 2, 3, 4 or 5 only
+Enter decision: 
+Redirecting you to the bank you have chosen...
+
+7
+6
+5
+4
+3
+2
+1
+
+Topped up AUD10 successfully!

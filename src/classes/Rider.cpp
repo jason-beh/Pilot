@@ -15,11 +15,7 @@
 
 using namespace std;
 
-int Rider::globalRiderId = 1;
-
 Rider::Rider() {
-    riderId = globalRiderId++;
-
     int currentBalance = 0;
 }
 
@@ -49,7 +45,7 @@ void Rider::getBalanceFromDB() {
 }
 
 bool Rider::topUp() {
-    std::cout << "How much would you like to topup?" << std::endl;
+    std::cout << std::endl << "How much would you like to topup?" << std::endl;
     int amount = getUserNumberInput("Topup amount: ");
 
     std::cout << "Please select a method for topup." << std::endl << std::endl;
@@ -81,5 +77,39 @@ bool Rider::topUp() {
 
     return isTopUpSuccessful;
 };
+
+void Rider::bookRide() {
+    std::string origin, destination;
+
+    std::cout << std::endl << "Current Location: ";
+    std::cin.ignore();
+    std::getline(std::cin, origin);
+
+    std::cout << "Destination: ";
+    std::getline(std::cin, destination);
+
+    std::cout << std::endl << "Please select the type of ride: " << std::endl;
+    std::cout << "1. Standard" << std::endl;
+    std::cout << "2. Comfort" << std::endl;
+    std::cout << "3. Luxury" << std::endl << std::endl;
+
+    int rideType = generateUserOptions(3);
+
+    std::cout << std::endl << "The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?" << std::endl;
+    std::cout << "1. Yes" << std::endl;
+    std::cout << "2. No" << std::endl << std::endl;
+
+    int option = generateUserOptions(2);
+    switch(option) {
+        case 1:
+            std::cout << "Add to waitlist" << std::endl;
+            break;
+        case 2:
+            return;
+            break;
+        default:
+            break;
+    }
+}
 
 Rider::~Rider() {}

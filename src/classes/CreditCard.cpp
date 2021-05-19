@@ -6,8 +6,8 @@
 #include <vector>
 
 #include "../libs/creditCardValidator.h"
-#include "../utils/getUserNumberInput.h"
 #include "../utils/getUserLongNumberInput.h"
+#include "../utils/getUserNumberInput.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ bool CreditCard::pay(int amount) {
     long int creditCardNumber = getUserLongNumberInput("Credit Card Number: ");
     int expiryDateYear = getUserNumberInput("Expiry Date Year (e.g. 2001): ");
     int expiryDateMonth = getUserNumberInput("Expiry Date Month (e.g. 12): ");
-    getUserNumberInput("CVC: ");
+    int cvc = getUserNumberInput("CVC: ");
 
     const int sizeLimit = 10;
     char formattedTime[sizeLimit];
@@ -38,12 +38,14 @@ bool CreditCard::pay(int amount) {
 
     int currentMonth = stoi(dateBreakdown[0]);
     int currentYear = stoi(dateBreakdown[2]);
+    std::string lengthCVC = std::to_string(cvc);
 
     if ((currentYear > expiryDateYear) ||
-        (currentYear == expiryDateYear && currentMonth > expiryDateMonth) ||
-        (isValid(creditCardNumber) == false)) {
+        (currentYear == expiryDateYear && currentMonth >= expiryDateMonth) ||
+        (isValid(creditCardNumber) == false) || lengthCVC.length() == 0 ||
+        lengthCVC.length() > 3 || expiryDateMonth > 12 || expiryDateMonth < 0) {
         std::cout << "Invalid Credit Card!" << std::endl;
-        return false;
+        return pay(amount);
     }
 
     return true;
