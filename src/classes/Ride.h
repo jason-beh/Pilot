@@ -1,5 +1,5 @@
-#ifndef BOOKING_H
-#define BOOKING_H
+#ifndef RIDE_H
+#define RIDE_H
 
 #include <string>
 

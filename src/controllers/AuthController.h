@@ -4,10 +4,10 @@
 #include "../classes/User.h"
 #include <string>
 
-void AuthController();
+void authController();
 
-bool AuthIsRiderOrDriver();
-bool AuthIsUserWantsToLogin();
+bool isRiderOrDriver();
+bool isUserWantsToLogin();
 
 
 #endif

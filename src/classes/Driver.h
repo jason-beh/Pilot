@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#include "Auth.h"
 #include "User.h"
 
 class Driver: public User
@@ -12,9 +11,9 @@ class Driver: public User
 public:
     Driver();
 
-
-    bool setAvailableToDrive(bool state);
-    int cashOut(int amount);
+    void setIsAvailable();
+    bool getIsAvailable();
+    int cashOut();
 
     ~Driver();
 
@@ -23,12 +22,9 @@ private:
 
     int driverId;
 
-    bool isAvailableToDrive;
+    bool isAvailable;
     int currentEarnings;
     bool isDriving;
-    // Vehicle* driverVehicle;
-    // vector<Ride*> rideHistory
-
 };
 
 #endif

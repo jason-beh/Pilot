@@ -1,15 +1,55 @@
-main:
-	g++ src/main.cpp src/controllers/AuthController.cpp src/utils/countdownTimer.cpp src/utils/generateUserOptions.cpp src/utils/getUserNumberInput.cpp src/controllers/RiderController.cpp src/utils/createEntryInDatabase.cpp src/utils/searchEntryInDatabase.cpp  src/classes/User.cpp src/classes/Driver.cpp src/classes/Rider.cpp src/classes/PaymentMethod.cpp src/classes/CreditCard.cpp src/classes/OnlineBanking.cpp src/classes/Cash.cpp src/classes/Auth.cpp -o build/main
-	./build/main
+# Variables
+CC = g++
+CFLAGS = -std=c++11
+BUILD_DIR = build
+SRC_DIR = src
+TEST_DIR = ${SRC_DIR}/tests
+TESTDATA_DIR = ${TEST_DIR}/data
+TESTDATAINPUT_DIR = ${TESTDATA_DIR}/inputs
+TESTDATAOUTPUT_DIR = ${TESTDATA_DIR}/outputs
 
-test:
-	g++ src/tests/EntryDatabaseTest.cpp src/utils/createEntryInDatabase.cpp src/utils/searchEntryInDatabase.cpp -o build/test
-	./build/test
+# Wildcard source files to get all cpp files
+CPP_SRC = $(wildcard $(SRC_DIR)/**/*.cpp) \
+		$(wildcard $(SRC_DIR)/**/**/*.cpp) \
+		$(wildcard $(SRC_DIR)/**/**/**/*.cpp)
 
-cleanBuild:
-	rm -rf build
-	mkdir build
+CPP_SRC_FILTERED := $(filter-out $(SRC_DIR)/main.cpp $(wildcard $(TEST_DIR)/*.cpp), $(CPP_SRC))
+OBJ_FILTERED = $(CPP_SRC_FILTERED:.cpp=.o)
 
-cleanDatabase:
-	rm -rf src/database
-	mkdir src/database
+OBJ = $(CPP_SRC:.cpp=.o)
+
+# Compile all individual .cpp file to .o file
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@  
+
+# Compile main into one executable
+main: $(OBJ_FILTERED)
+	$(CC) $(SRC_DIR)/main.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@
+
+allTests: test testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions
+
+test: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@
+
+testGetUserNumberInput: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
+testGetUserLongNumberInput: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
+testGenerateUserOptions: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
+# Clean all files linked to main and test
+clean:
+	rm -f ${OBJ}
+	rm -rf ${BUILD_DIR}
+	mkdir ${BUILD_DIR}

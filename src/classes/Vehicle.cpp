@@ -1,6 +1,4 @@
 #include "Vehicle.h"
-#include "Auth.h"
-
 #include <string>
 
 using namespace std;

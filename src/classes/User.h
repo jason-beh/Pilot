@@ -2,22 +2,29 @@
 #define USER_H
 
 #include <string>
+#include <vector>
 
-#include "Auth.h"
+// #include "Ride.h"
 
-class User
-{
-public:
-    User();
+class User {
+    private:
+        std::string username;
+        std::string password;
+        bool isLoggedIn;
+        // std::vector<Ride*> rideHistory;
 
-    ~User();
+    public:
+        User();
+        ~User();
 
-    static int globalUserId;
+        void setUsername(std::string newUsername);
+        void setPassword(std::string newPassword);
+        void setIsLoggedIn(bool isLoggedInStatus);
 
-    int userId;
-
-    std::string name;
-    Auth* authDetails;
+        bool getIsLoggedIn();
+        bool signUp(std::string userType);
+        bool login(std::string userType);
+        std::string getUsername();
 };
 
 #endif

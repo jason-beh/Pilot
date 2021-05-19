@@ -1,5 +1,5 @@
 #include "Driver.h"
-#include "Auth.h"
+#include "User.h"
 
 #include <string>
 
@@ -11,19 +11,20 @@ Driver::Driver() {
 
     driverId = globalDriverId++;
 
-    isAvailableToDrive = false;
+    isAvailable = false;
     currentEarnings = 0;
     isDriving = false;
-
-    authDetails = new Auth();
 }
 
-bool Driver::setAvailableToDrive(bool state) {
-    return state;
+void Driver::setIsAvailable() {
+
+};
+bool Driver::getIsAvailable() {
+    return isAvailable;
+};
+int Driver::cashOut() {
+    return 1;
 };
 
-int Driver::cashOut(int amount) {
-    return 0;
-};
 
 Driver::~Driver() {}

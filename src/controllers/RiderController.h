@@ -4,6 +4,6 @@
 #include "../classes/Rider.h"
 #include <string>
 
-void RiderController(Rider* rider);
+void riderController(Rider* rider);
 
 #endif

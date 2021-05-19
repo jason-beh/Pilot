@@ -1,0 +1,33 @@
+# Variables
+CC = g++
+CFLAGS = -std=c++11 -Wall
+BUILD_DIR = build
+SRC_DIR = src
+CLASSES_DIR = $(SRC_DIR)/classes
+UTILS_DIR = $(SRC_DIR)/utils
+TESTS_DIR = $(SRC_DIR)/tests
+
+# # ----------------------
+# # Main
+# # ----------------------
+# main:
+# 	$(CC) ${CFLAGS} ${SRC_DIR}/main.cpp ${SRC_DIR}/**/*.cpp -o ${BUILD_DIR}/main
+# 	./${BUILD_DIR}/main
+
+# # ----------------------
+# # Testing
+# # ----------------------
+# test:
+# 	$(CC) ${CFLAGS} ${SRC_DIR}/test.cpp ${SRC_DIR}/**/*.cpp -o ${BUILD_DIR}/test
+# 	./${BUILD_DIR}/test < ${TESTS_DIR}/data/inputs/inputGenerateUserOptions01.txt
+
+# # ----------------------
+# # Cleaning
+# # ----------------------
+# cleanBuild:
+# 	rm -rf ${BUILD_DIR}
+# 	mkdir ${BUILD_DIR}
+
+# cleanDatabase:
+# 	rm -rf ${SRC_DIR}/database
+# 	mkdir ${SRC_DIR}/database

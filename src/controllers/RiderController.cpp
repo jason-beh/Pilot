@@ -5,9 +5,9 @@
 #include "../classes/Rider.h"
 #include "../classes/User.h"
 #include "../utils/generateUserOptions.h"
-#include "AuthController.h"
+#include "authController.h"
 
-void RiderController(Rider* rider) {
+void riderController(Rider* rider) {
     std::cout << std::endl;
     std::cout << "--------------------" << std::endl;
     std::cout << "Rider's Menu" << std::endl;
@@ -39,5 +39,5 @@ void RiderController(Rider* rider) {
             break;
     }
 
-    RiderController(rider);
+    riderController(rider);
 }

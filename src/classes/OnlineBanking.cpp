@@ -1,7 +1,7 @@
 #include "OnlineBanking.h"
 #include "../utils/generateUserOptions.h"
-#include "../utils/countdownTimer.h"
 
+#include <unistd.h>
 #include <string>
 #include <iostream>
 
@@ -20,12 +20,20 @@ bool OnlineBanking::pay(int amount) {
     std::cout << "4. Bank of Queensland" << std::endl;
     std::cout << "5. National Australia Bank" << std::endl << std::endl;
 
-    int option = generateUserOptions(5);
+    generateUserOptions(5);
 
     std::cout << std::endl;
     std::cout << "Redirecting you to the bank you have chosen..." << std::endl << std::endl;;
 
-    countdownTimer(8);
+    // Countdown
+    int seconds = 7;
+
+    while(seconds > 0) {
+        std::cout << seconds-- << std::endl;
+        sleep(1);
+    }
+
+    std::cout << std::endl;
     
     std::cout << "Topped up AUD" << amount << " successfully!" << std::endl;
 

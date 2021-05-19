@@ -1,8 +1,8 @@
-#include "AuthController.h"
+#include "authController.h"
 #include "../classes/User.h"
 #include "../classes/Driver.h"
 #include "../classes/Rider.h"
-#include "RiderController.h"
+#include "riderController.h"
 
 #include "../utils/generateUserOptions.h"
 
@@ -10,34 +10,34 @@
 #include <iostream>
 #include <string>
 
-void AuthController()
+void authController()
 {
-    bool isRider = AuthIsRiderOrDriver();
-    bool isUserWantsToLogin = AuthIsUserWantsToLogin();
+    bool isRider = isRiderOrDriver();
+    bool isUserLogin = isUserWantsToLogin();
 
     if(isRider == true) {
         
         Rider* rider = new Rider();
 
-        if(isUserWantsToLogin == true) 
-            rider->authDetails->login("Rider");
+        if(isUserLogin == true) 
+            rider->login("Rider");
         else 
-            rider->authDetails->signUp("Rider");
+            rider->signUp("Rider");
 
-        RiderController(rider);
+        riderController(rider);
 
     } else {
         Driver* driver = new Driver();
 
-        if(isUserWantsToLogin == true) 
-            driver->authDetails->login("Driver");
+        if(isUserLogin == true) 
+            driver->login("Driver");
         else 
-            driver->authDetails->signUp("Driver");
+            driver->signUp("Driver");
     }
     
 }
 
-bool AuthIsRiderOrDriver() {
+bool isRiderOrDriver() {
     std::cout << "---------------------------------------" << std::endl;
     std::cout << "Welcome to Pilot!" << std::endl;
     std::cout << "---------------------------------------" << std::endl;
@@ -52,8 +52,7 @@ bool AuthIsRiderOrDriver() {
     return isRider;
 }
 
-bool AuthIsUserWantsToLogin() {
-
+bool isUserWantsToLogin() {
     std::cout << "Would you like to sign up for a new account or login?" << std::endl << std::endl;
 
     std::cout << "1. Login" << std::endl;

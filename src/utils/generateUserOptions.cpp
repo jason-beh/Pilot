@@ -2,10 +2,15 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 int generateUserOptions(int numOptions) {
     bool prompt = true;
     int optionChosen;
+
+    if(numOptions <= 0) {
+        return -1;
+    }
 
     // While loop to prompt users for decision forever
     while (prompt) {

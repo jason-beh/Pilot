@@ -4,9 +4,9 @@
 #include <string>
 #include <limits>
 
-int getUserNumberInput(std::string instruction) {
+long int getUserLongNumberInput(std::string instruction) {
     bool prompt = true;
-    int number;
+    long int number;
 
     // While loop to prompt users for decision forever
     while (prompt) {

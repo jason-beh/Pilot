@@ -3,6 +3,6 @@
 
 #include <string>
 
-int getUserNumberInput();
+int getUserNumberInput(std::string instruction);
 
 #endif

@@ -4,33 +4,28 @@
 #include <string>
 #include <vector>
 
-#include "Auth.h"
 #include "User.h"
 
 class Rider: public User
 {
-public:
-    Rider();
+    public:
+        Rider();
 
-    int getCurrentBalance();
+        int getCurrentBalance();
+        void setCurrentBalance(int amount);
+        void getBalanceFromDB();
 
-    bool topUp();
+        bool topUp();
 
-    ~Rider();
+        void bookRide();
 
-private:
-    static int globalRiderId;
+        ~Rider();
 
-    int riderId;
-
-    int currentBalance;
-
-    void setCurrentBalance(int amount);
-
-    // vector<Ride*> rideHistory
-
-    
-    // Ride* bookRide(string destination, string origin, Driver* driver)
+    private:
+        static int globalRiderId;
+        std::string hello;
+        int riderId;
+        int currentBalance;
 };
 
 #endif
