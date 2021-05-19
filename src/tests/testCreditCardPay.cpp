@@ -9,4 +9,7 @@ int main() {
     CreditCard* creditCard = new CreditCard();
     bool isTopUpSuccessful = creditCard->pay(10);
     assert(isTopUpSuccessful = true);
+
+    delete creditCard;
+    creditCard = nullptr;
 }

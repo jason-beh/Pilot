@@ -36,17 +36,14 @@ test: $(OBJ_FILTERED)
 
 testGetUserNumberInput: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 
 testGetUserLongNumberInput: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 
 testGenerateUserOptions: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 
 testLogin: $(OBJ_FILTERED)
@@ -62,6 +59,10 @@ testOnlineBankingPay: $(OBJ_FILTERED)
 	/${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 
 testCreditCardPay: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
+testCashPay: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
