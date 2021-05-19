@@ -34,9 +34,6 @@ void riderController(Rider* rider) {
         case 3:
             std::cout << "View Ride History" << std::endl;
             break;
-        case 4:
-            std::cout << "Change Password" << std::endl;
-            break;
     }
 
     riderController(rider);

@@ -13,7 +13,6 @@ class Rider: public User
 
         int getCurrentBalance();
         void setCurrentBalance(int amount);
-        void getBalanceFromDB();
         bool topUp();
         void bookRide();
 

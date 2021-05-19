@@ -11,37 +11,44 @@
 #include "../utils/getUserNumberInput.h"
 #include "../utils/getEntryInDatabase.h"
 #include "../utils/createEntryInDatabase.h"
+#include "../utils/updateEntryInDatabase.h"
 #include "../controllers/riderController.h"
 
 using namespace std;
 
 Rider::Rider() {
-    int currentBalance = 0;
+    int currentBalance = -1;
 }
 
 void Rider::setCurrentBalance(int amount) {
+    std::string username  = getUsername();
+
+    std::string newDatabaseEntry = username + "," + std::to_string(amount);
+
+    updateEntryInDatabase(username, "balanceRider", newDatabaseEntry, false);
+
     currentBalance = amount;
 }
 
 int Rider::getCurrentBalance() {
-    getBalanceFromDB();
+    if(currentBalance == -1) {
+        std::string username  = getUsername();
+
+        vector<std::string> databaseResults = getEntryInDatabase(username, "balanceRider", false);
+
+        if(databaseResults.empty() != true && databaseResults[0] == username) {
+            std::string balance = databaseResults[1];
+            setCurrentBalance(stoi(balance));
+            return stoi(balance);
+        } else {
+            std::string newDatabaseEntry = username + ",0";
+            createEntryInDatabase(newDatabaseEntry, "balanceRider");
+            setCurrentBalance(0);
+            return 0;
+        }
+    }
 
     return currentBalance;
-}
-
-void Rider::getBalanceFromDB() {
-    std::string username  = getUsername();
-
-    vector<std::string> databaseResults = getEntryInDatabase(username, "balanceRider", false);
-
-    if(databaseResults.size() != 0) {
-        std::string balance = databaseResults[1];
-        setCurrentBalance(stoi(balance));
-    } else {
-        std::string newDatabaseEntry = username + ",0";
-        createEntryInDatabase(newDatabaseEntry, "balanceRider");
-        setCurrentBalance(0);
-    }
 }
 
 bool Rider::topUp() {
