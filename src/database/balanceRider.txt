@@ -1,2 +1,4 @@
 jason,50
 jason,0
+test,0
+pop,0

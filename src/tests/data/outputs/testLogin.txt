@@ -1,0 +1,26 @@
+-----------------------
+Login as Rider
+-----------------------
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Incorrect login details or Account doesn't exists
+
+Username: Password: 
+Login successfully!

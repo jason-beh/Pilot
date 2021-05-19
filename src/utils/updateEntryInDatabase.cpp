@@ -30,7 +30,13 @@ bool updateEntryInDatabase(std::string databaseEntry, std::string databaseName, 
             }
         }
 
-        outFileStream << currentLine << '\n';
+        outFileStream << currentLine;
+
+        if(currentLine != "") {
+            outFileStream << '\n';
+        }
+
+        
     }
 
     // Convert strings into char[]

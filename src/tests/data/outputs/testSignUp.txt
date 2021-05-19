@@ -1,0 +1,13 @@
+-----------------------
+Sign up as Rider
+-----------------------
+Username: Password: Confirm Password: 
+Username is taken
+
+Username: Password: Confirm Password: 
+The passwords don't match
+
+Username: Password: Confirm Password: 
+The passwords don't match
+
+Username: Password: Confirm Password: Sign up successfully!

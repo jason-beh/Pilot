@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <vector>
 
 User::User() {
     isLoggedIn = false;
@@ -38,20 +39,24 @@ bool User::signUp(std::string userType) {
     std::cout << "Sign up as " << userType << std::endl;
     std::cout << "-----------------------" << std::endl;
 
-    bool isAccountExist = false;
+    std::vector<std::string> userAccount = {};
     bool isPasswordsMatch = true;
+
+    std::string username;
+    std::string password;
+    std::string confirmPassword;
 
     do {
         // Get relevant details for signup
-        std::string username;
+        username = "";
         std::cout << "Username: ";
         std::cin >> username;
 
-        std::string password;
+        password = "";
         std::cout << "Password: ";
         std::cin >> password;
 
-        std::string confirmPassword;
+        confirmPassword = "";
         std::cout << "Confirm Password: ";
         std::cin >> confirmPassword;
 
@@ -63,35 +68,21 @@ bool User::signUp(std::string userType) {
         } 
 
         // Checking if user exists
-        isAccountExist = false;
-        std::string currentLine;
-        std::string databasePath = "src/database/auth" + userType + ".txt";
-        std::ifstream fileStream(databasePath);
+        std::string databaseEntry = username;
+        userAccount = getEntryInDatabase(username, "auth" + userType, false);
 
-        // Read the entire file line by line
-        while (getline(fileStream, currentLine)) {
-            // Break the while loop if the current line's username matches
-            if (currentLine.substr(0, currentLine.find(",")) == username) {
-                isAccountExist = true;
-                break;
-            }
-        }
-
-        // Close file stream
-        fileStream.close();
-
-        // Restart the loop if account exists
-        if (isAccountExist == true) {
+        if(userAccount.empty() == false && userAccount[0] == username) {
             std::cout << std::endl << "Username is taken" << std::endl << std::endl;
             continue;
         }
-
-    } while(isAccountExist == true || isPasswordsMatch == false);
+    } while(userAccount.empty() == false || isPasswordsMatch == false);
 
     // Set new username, password and isLoggedInStatus
     setUsername(username);
     setPassword(password);
     setIsLoggedIn(true);
+
+    std::cout << "Sign up successfully!" << std::endl;
 
     // Create new entry in database
     std::string databaseEntry = username + "," + password;
@@ -104,7 +95,7 @@ bool User::login(std::string userType) {
     std::cout << "Login as " << userType << std::endl;
     std::cout << "-----------------------" << std::endl;
 
-    bool isAuthenticated = false;
+    std::vector<std::string> userAccount;
 
     std::string username;
     std::string password;
@@ -121,12 +112,12 @@ bool User::login(std::string userType) {
 
         // Search entry in database
         std::string databaseEntry = username + "," + password;
-        // isAuthenticated = getEntryInDatabase(databaseEntry, "auth" + userType);
+        userAccount = getEntryInDatabase(databaseEntry, "auth" + userType, true);
 
-        if(isAuthenticated == false) {
+        if(userAccount.empty() == true) {
             std::cout << "Incorrect login details or Account doesn't exists" << std::endl << std::endl;
         }
-    } while(isAuthenticated == false);
+    } while(userAccount.empty() == true);
 
     // Update state as user is now logged in
     setUsername(username);

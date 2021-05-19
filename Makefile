@@ -48,6 +48,15 @@ testGenerateUserOptions: $(OBJ_FILTERED)
 	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 
+testLogin: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
+testSignUp: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+
 # Clean all files linked to main and test
 clean:
 	rm -f ${OBJ}
