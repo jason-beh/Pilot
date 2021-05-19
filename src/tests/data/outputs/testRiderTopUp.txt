@@ -1,0 +1,32 @@
+-----------------------
+Login as Rider
+-----------------------
+Username: Password: 
+Login successfully!
+
+How much would you like to topup?
+Topup amount: Please select a method for topup.
+
+1. Credit Card
+2. Online Banking
+
+Enter decision: 
+Please choose the your preferred bank from the list below.
+1. Commonwealth Bank
+2. ANZ Bank
+3. Westpac Bank
+4. Bank of Queensland
+5. National Australia Bank
+
+Enter decision: 
+Redirecting you to the bank you have chosen...
+
+7
+6
+5
+4
+3
+2
+1
+
+Topped up AUD100 successfully!

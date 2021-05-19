@@ -15,9 +15,10 @@ int main() {
     int currentBalance = rider->getCurrentBalance();
     assert(currentBalance == 0);
 
-    rider->setCurrentBalance(10);
+    rider->topUp();
+
     currentBalance = rider->getCurrentBalance();
-    assert(currentBalance == 10);
+    assert(currentBalance == 100);
     
     delete rider;
     rider = nullptr;

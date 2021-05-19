@@ -17,7 +17,7 @@
 using namespace std;
 
 Rider::Rider() {
-    int currentBalance = -1;
+    int currentBalance = 0;
 }
 
 void Rider::setCurrentBalance(int amount) {
@@ -31,19 +31,18 @@ void Rider::setCurrentBalance(int amount) {
 }
 
 int Rider::getCurrentBalance() {
-    if(currentBalance == -1) {
+    if(currentBalance == 0) {
         std::string username  = getUsername();
 
         vector<std::string> databaseResults = getEntryInDatabase(username, "balanceRider", false);
 
-        if(databaseResults.empty() != true && databaseResults[0] == username) {
+        if(databaseResults.empty() == false && databaseResults[0] == username) {
             std::string balance = databaseResults[1];
             setCurrentBalance(stoi(balance));
             return stoi(balance);
         } else {
             std::string newDatabaseEntry = username + ",0";
             createEntryInDatabase(newDatabaseEntry, "balanceRider");
-            setCurrentBalance(0);
             return 0;
         }
     }

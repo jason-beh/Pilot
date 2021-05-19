@@ -1,2 +1,1 @@
-jason,50
-test,10
+jason,10010

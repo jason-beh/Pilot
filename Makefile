@@ -75,6 +75,11 @@ testRiderSetCurrentBalance: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 
+testRiderTopUp: $(OBJ_FILTERED)
+	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+
+
 # Clean all .o files and build folder
 clean:
 	rm -f ${OBJ}
