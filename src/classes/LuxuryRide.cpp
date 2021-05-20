@@ -5,6 +5,7 @@
 
 #include "Ride.h"
 #include "../utils/generateUserOptions.h"
+#include "../utils/getUserStringInput.h"
 
 using namespace std;
 
@@ -43,18 +44,16 @@ void LuxuryRide::useAmenities() {
         }
         case 3: {
             std::string songChosen;
-            std::cout << "Please enter a song you would like to play:" << std::endl;
             std::cin.ignore();
-            std::getline(std::cin, songChosen);
+            songChosen = getUserStringInput("Please enter a song you would like to play: ", true);
             currentSong = songChosen;
             std::cout << "Playing " << songChosen << std::endl;
             break;
         }
         case 4: {
             std::string movieChosen;
-            std::cout << "Please enter a movie you would like to watch:" << std::endl;
             std::cin.ignore();
-            std::getline(std::cin, movieChosen);
+            movieChosen = getUserStringInput("Please enter a movie you would like to watch: ", true);
             currentMovie = movieChosen;
             std::cout << "Playing " << movieChosen << std::endl;
             break;

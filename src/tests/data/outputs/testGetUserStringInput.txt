@@ -1,0 +1,6 @@
+Enter your decision here: Input must not contain ','
+Enter your decision here: Input must not contain ','
+Enter your decision here: Input must not contain ','
+Enter your decision here: Yay
+
+getUserStringInput  - Passed

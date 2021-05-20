@@ -1,12 +1,13 @@
 #include "User.h"
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
 #include "../utils/createEntryInDatabase.h"
 #include "../utils/getEntryInDatabase.h"
-
-#include <fstream>
-#include <string>
-#include <iostream>
-#include <vector>
+#include "../utils/getUserStringInput.h"
 
 User::User() {
     isLoggedIn = false;
@@ -14,24 +15,16 @@ User::User() {
     password = "";
 }
 
-std::string User::getUsername() {
-    return username;
-}
+std::string User::getUsername() { return username; }
 
-bool User::getIsLoggedIn() {
-    return isLoggedIn;
-};
+bool User::getIsLoggedIn() { return isLoggedIn; };
 
 void User::setIsLoggedIn(bool isLoggedInStatus) {
     isLoggedIn = isLoggedInStatus;
 };
 
-void User::setUsername(std::string newUsername) {
-    username = newUsername;
-};
-void User::setPassword(std::string newPassword) {
-    password = newPassword;
-};
+void User::setUsername(std::string newUsername) { username = newUsername; };
+void User::setPassword(std::string newPassword) { password = newPassword; };
 
 bool User::signUp(std::string userType) {
     // Get all relevant details
@@ -46,36 +39,34 @@ bool User::signUp(std::string userType) {
     std::string password;
     std::string confirmPassword;
 
+    // std::cin.ignore();
+
     do {
         // Get relevant details for signup
-        username = "";
-        std::cout << "Username: ";
-        std::cin >> username;
-
-        password = "";
-        std::cout << "Password: ";
-        std::cin >> password;
-
-        confirmPassword = "";
-        std::cout << "Confirm Password: ";
-        std::cin >> confirmPassword;
+        username = getUserStringInput("Username: ", true);
+        password = getUserStringInput("Password: ", true);
+        confirmPassword = getUserStringInput("Confirm Password: ", false);
 
         // Restart the loop if the passwords don't match
         isPasswordsMatch = (confirmPassword == password);
-        if(isPasswordsMatch == false) {
-            std::cout << std::endl << "The passwords don't match" << std::endl << std::endl;
+        if (isPasswordsMatch == false) {
+            std::cout << std::endl
+                      << "The passwords don't match" << std::endl
+                      << std::endl;
             continue;
-        } 
+        }
 
         // Checking if user exists
         std::string databaseEntry = username;
         userAccount = getEntryInDatabase(username, "auth" + userType, false);
 
-        if(userAccount.empty() == false && userAccount[0] == username) {
-            std::cout << std::endl << "Username is taken" << std::endl << std::endl;
+        if (userAccount.empty() == false && userAccount[0] == username) {
+            std::cout << std::endl
+                      << "Username is taken" << std::endl
+                      << std::endl;
             continue;
         }
-    } while(userAccount.empty() == false || isPasswordsMatch == false);
+    } while (userAccount.empty() == false || isPasswordsMatch == false);
 
     // Set new username, password and isLoggedInStatus
     setUsername(username);
@@ -101,23 +92,23 @@ bool User::login(std::string userType) {
     std::string password;
 
     do {
-        username = "";
-        std::cout << "Username: ";
-        std::cin >> username;
+        username = getUserStringInput("Username: ", true);
+        password = getUserStringInput("Password: ", false);
 
-        password = "";
-        std::cout << "Password: ";
-        std::cin >> password;
-        std::cout << std::endl;
+        std::cout << username << std::endl;
+        std::cout << password << std::endl;
 
         // Search entry in database
         std::string databaseEntry = username + "," + password;
-        userAccount = getEntryInDatabase(databaseEntry, "auth" + userType, true);
+        userAccount =
+            getEntryInDatabase(databaseEntry, "auth" + userType, true);
 
-        if(userAccount.empty() == true) {
-            std::cout << "Incorrect login details or Account doesn't exists" << std::endl << std::endl;
+        if (userAccount.empty() == true) {
+            std::cout << "Incorrect login details or Account doesn't exists"
+                      << std::endl
+                      << std::endl;
         }
-    } while(userAccount.empty() == true);
+    } while (userAccount.empty() == true);
 
     // Update state as user is now logged in
     setUsername(username);

@@ -5,6 +5,7 @@
 #include "Cash.h"
 #include "Ride.h"
 #include "LuxuryRide.h"
+#include "AccountBalance.h"
 
 #include <string>
 #include <iostream>
@@ -14,6 +15,7 @@
 #include "../utils/getEntryInDatabase.h"
 #include "../utils/createEntryInDatabase.h"
 #include "../utils/updateEntryInDatabase.h"
+#include "../utils/getUserStringInput.h"
 #include "../controllers/riderController.h"
 
 using namespace std;
@@ -87,15 +89,13 @@ bool Rider::topUp() {
 };
 
 void Rider::bookRide() {
-    std::string origin, destination;
     Ride* rideTypeChosen;
 
-    std::cout << "Current Location: ";
-    std::cin.ignore();
-    std::getline(std::cin, origin);
+    std::string origin = getUserStringInput("Current Location: ", true);
+    std::string destination = getUserStringInput("Destination: ", false);
 
-    std::cout << "Destination: ";
-    std::getline(std::cin, destination);
+    std::cout << origin << std::endl;
+    std::cout << destination << std::endl;
 
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
@@ -135,9 +135,10 @@ void Rider::bookRide() {
             }
             case 4: {
                 if(getCurrentBalance() < 5) {
-                    std::cout << "You have not enough balance in your account. Please top up before booking a ride." << std::endl;
+                    std::cout << "You don't have not enough balance in your account. Please top up before booking a ride." << std::endl;
                     return;
-                }
+                } 
+                paymentMethod = new AccountBalance();
             }
             default:
                 break;
@@ -149,7 +150,7 @@ void Rider::bookRide() {
             case 1:
                 rideTypeChosen = new Ride(std::time(0), this, 5, origin, destination, paymentMethod);
                 break;
-            case 2:
+            case 3:
                 rideTypeChosen = new LuxuryRide(std::time(0), this, 5, origin, destination, paymentMethod);
                 break;
             default:
