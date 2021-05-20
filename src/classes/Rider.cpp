@@ -3,6 +3,8 @@
 #include "CreditCard.h"
 #include "OnlineBanking.h"
 #include "Cash.h"
+#include "Ride.h"
+#include "LuxuryRide.h"
 
 #include <string>
 #include <iostream>
@@ -51,13 +53,13 @@ int Rider::getCurrentBalance() {
 }
 
 bool Rider::topUp() {
-    std::cout << std::endl << "How much would you like to topup?" << std::endl;
+    std::cout << "How much would you like to topup?" << std::endl;
     int amount = getUserNumberInput("Topup amount: ");
 
     std::cout << "Please select a method for topup." << std::endl << std::endl;
 
     std::cout << "1. Credit Card" << std::endl;
-    std::cout << "2. Online Banking" << std::endl << std::endl;
+    std::cout << "2. Online Banking" << std::endl;
 
     int choice = generateUserOptions(2);
     int isTopUpSuccessful = false;
@@ -86,8 +88,9 @@ bool Rider::topUp() {
 
 void Rider::bookRide() {
     std::string origin, destination;
+    Ride* rideTypeChosen;
 
-    std::cout << std::endl << "Current Location: ";
+    std::cout << "Current Location: ";
     std::cin.ignore();
     std::getline(std::cin, origin);
 
@@ -97,24 +100,66 @@ void Rider::bookRide() {
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
     std::cout << "2. Comfort" << std::endl;
-    std::cout << "3. Luxury" << std::endl << std::endl;
+    std::cout << "3. Luxury" << std::endl;
 
-    int rideType = generateUserOptions(3);
+    int userRideOption = generateUserOptions(3);
 
-    std::cout << std::endl << "The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?" << std::endl;
+    std::cout << "The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?" << std::endl;
     std::cout << "1. Yes" << std::endl;
-    std::cout << "2. No" << std::endl << std::endl;
+    std::cout << "2. No" << std::endl;
 
     int option = generateUserOptions(2);
-    switch(option) {
-        case 1:
-            std::cout << "Add to waitlist" << std::endl;
-            break;
-        case 2:
-            return;
-            break;
-        default:
-            break;
+
+    if(option == 1) {
+        std::cout << "Please select your preferred payment method: " << std::endl;
+        std::cout << "1. Credit Card" << std::endl;
+        std::cout << "2. Online Banking" << std::endl;
+        std::cout << "3. Cash" << std::endl;
+        std::cout << "4. Account Balance" << std::endl;
+        
+        int choice = generateUserOptions(4);
+
+        PaymentMethod* paymentMethod;
+
+        switch(choice) {
+            case 1: {
+                paymentMethod = new CreditCard();
+                break;
+            }
+            case 2: {
+                paymentMethod = new OnlineBanking();
+                break;
+            }
+            case 3: {
+                paymentMethod = new Cash();
+            }
+            case 4: {
+                if(getCurrentBalance() < 5) {
+                    std::cout << "You have not enough balance in your account. Please top up before booking a ride." << std::endl;
+                    return;
+                }
+            }
+            default:
+                break;
+        }
+
+        paymentMethod->pay(5);
+
+        switch(userRideOption) {
+            case 1:
+                rideTypeChosen = new Ride(std::time(0), this, 5, origin, destination, paymentMethod);
+                break;
+            case 2:
+                rideTypeChosen = new LuxuryRide(std::time(0), this, 5, origin, destination, paymentMethod);
+                break;
+            default:
+                break;
+        }
+
+        rideTypeChosen->useAmenities();
+
+        setCurrentBalance(getCurrentBalance() - 5);
+
     }
 }
 

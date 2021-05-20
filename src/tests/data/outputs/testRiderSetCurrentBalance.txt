@@ -3,5 +3,3 @@ Login as Rider
 -----------------------
 Username: Password: 
 Login successfully!
-0
-10

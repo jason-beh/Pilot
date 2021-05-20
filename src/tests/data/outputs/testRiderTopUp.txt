@@ -3,7 +3,6 @@ Login as Rider
 -----------------------
 Username: Password: 
 Login successfully!
-
 How much would you like to topup?
 Topup amount: Please select a method for topup.
 

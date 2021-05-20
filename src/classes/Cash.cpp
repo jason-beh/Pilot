@@ -9,7 +9,7 @@ Cash::Cash() {
 }
 
 bool Cash::pay(int amount) {
-    std::cout << "Please make sure to pay AUD" << amount << " once you have reached your destination" << std::endl;
+    std::cout << "Awesome! Please make sure to pay AUD" << amount << " once you have reached your destination." << std::endl;
 
     return true;
 }

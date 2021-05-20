@@ -28,57 +28,16 @@ main: $(OBJ_FILTERED)
 	$(CC) $(SRC_DIR)/main.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@
 
-allTests: test testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions
+allTests: testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay
 
 test: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@
 
-testGetUserNumberInput: $(OBJ_FILTERED)
+testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testGetUserLongNumberInput: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testGenerateUserOptions: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testLogin: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testSignUp: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testOnlineBankingPay: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	/${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testCreditCardPay: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testCashPay: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
-	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testRiderGetCurrentBalance: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testRiderSetCurrentBalance: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
-
-testRiderTopUp: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
-
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 
 # Clean all .o files and build folder
 clean:

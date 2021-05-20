@@ -4,26 +4,31 @@
 #include <string>
 
 #include "Driver.h"
+#include "PaymentMethod.h"
 #include "Rider.h"
 
-class Ride
-{
-private:
-    static int globalRideId;
-    int rideId;
+class Ride {
+   private:
+        Rider* rider;
+        Driver* driver;
+        PaymentMethod* paymentMethod;
 
-    Rider* rider;
-    Driver* driver;
+        int price;
+        std::string origin;
+        std::string destination;
+        time_t createdAt;
 
-    int price;
-    std::string origin;
-    std::string destination;
+        bool isRadioOn;
 
-public:
-    Ride();
+        void setDriver(Driver* newDriver);
 
-    ~Ride();
+   public:
+        Ride(time_t createdAt, Rider* rider, int price, std::string origin,
+            std::string destination, PaymentMethod* paymentMethod);
 
+        virtual void useAmenities();
+
+        ~Ride();
 };
 
 #endif

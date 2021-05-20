@@ -44,7 +44,7 @@ bool isRiderOrDriver() {
     std::cout << "To begin using Pilot, are you a driver or rider? (Please select your options based on the number)" << std::endl << std::endl;
 
     std::cout << "1. Rider" << std::endl;
-    std::cout << "2. Driver" << std::endl << std::endl;
+    std::cout << "2. Driver" << std::endl;
 
     int optionChosen = generateUserOptions(2);
     bool isRider = (optionChosen == 1);
@@ -56,7 +56,7 @@ bool isUserWantsToLogin() {
     std::cout << "Would you like to sign up for a new account or login?" << std::endl << std::endl;
 
     std::cout << "1. Login" << std::endl;
-    std::cout << "2. Signup" << std::endl << std::endl;
+    std::cout << "2. Signup" << std::endl;
 
     int optionChosen = generateUserOptions(2);
     bool userWantsToLogin = (optionChosen == 1);

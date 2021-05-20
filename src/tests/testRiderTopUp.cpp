@@ -24,5 +24,5 @@ int main() {
     rider = nullptr;
 
     updateEntryInDatabase("test,10005", "authRider", "", true);
-    updateEntryInDatabase("test,0", "balanceRider", "", true);
+    updateEntryInDatabase("test,100", "balanceRider", "", true);
 }

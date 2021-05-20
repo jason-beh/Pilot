@@ -14,12 +14,13 @@ int generateUserOptions(int numOptions) {
 
     // While loop to prompt users for decision forever
     while (prompt) {
-        std::cout << "Enter decision: ";
+        std::cout << std::endl << "Enter decision: ";
 
         // Check if input is a valid number and between the range from 1 to numOptions
         if (std::cin >> optionChosen) {
             if (optionChosen >= 1 && optionChosen <= numOptions) {
                 prompt = false;
+                std::cout << std::endl;
                 break;
             }
         }
