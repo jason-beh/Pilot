@@ -19,9 +19,8 @@ void riderController(Rider* rider) {
 
     std::cout << "1. Book Ride" << std::endl;
     std::cout << "2. Top Up" << std::endl;
-    std::cout << "3. View Ride History" << std::endl;
 
-    int riderDecision = generateUserOptions(3);
+    int riderDecision = generateUserOptions(2);
 
     switch (riderDecision) {
         case 1:
@@ -29,9 +28,6 @@ void riderController(Rider* rider) {
             break;
         case 2:
             rider->topUp();
-            break;
-        case 3:
-            std::cout << "TODO: View Ride History" << std::endl;
             break;
     }
 

@@ -11,7 +11,6 @@ class User {
         std::string username;
         std::string password;
         bool isLoggedIn;
-        // std::vector<Ride*> rideHistory;
 
     public:
         User();

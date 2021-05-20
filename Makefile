@@ -28,7 +28,7 @@ main: $(OBJ_FILTERED)
 	$(CC) $(SRC_DIR)/main.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@
 
-allTests: testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput
+allTests: test testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput
 
 test: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
@@ -36,7 +36,8 @@ test: $(OBJ_FILTERED)
 
 testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput: $(OBJ_FILTERED)
 	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	 ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
+	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
+	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 
 # Clean all .o files and build folder
 clean:

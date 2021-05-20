@@ -94,8 +94,8 @@ void Rider::bookRide() {
     std::string origin = getUserStringInput("Current Location: ", true);
     std::string destination = getUserStringInput("Destination: ", false);
 
-    std::cout << origin << std::endl;
-    std::cout << destination << std::endl;
+    // std::cout << origin << std::endl;
+    // std::cout << destination << std::endl;
 
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
