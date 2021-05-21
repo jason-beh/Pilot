@@ -5,7 +5,7 @@
 #include "../classes/Rider.h"
 #include "../classes/User.h"
 #include "../utils/generateUserOptions.h"
-#include "authController.h"
+#include "driverController.h"
 
 void riderController(Rider* rider) {
     std::cout << std::endl;

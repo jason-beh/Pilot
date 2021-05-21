@@ -3,6 +3,7 @@
 #include "../classes/Driver.h"
 #include "../classes/Rider.h"
 #include "riderController.h"
+#include "driverController.h"
 
 #include "../utils/generateUserOptions.h"
 
@@ -33,6 +34,8 @@ void authController()
             driver->login("Driver");
         else 
             driver->signUp("Driver");
+
+        driverController(driver);
     }
     
 }

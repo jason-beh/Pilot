@@ -171,11 +171,11 @@ void Rider::bookRide() {
             }
 
             secondsWaited++;
-            sleep(2);
             std::cout << "Finding drivers..." << std::endl; 
+            sleep(2);
 
             std::string currentLine;
-            std::string databasePath = "src/database/availableDriver.txt";
+            std::string databasePath = "src/database/availableDrivers.txt";
             std::ifstream fileStream(databasePath);
 
             // Read the entire file line by line
@@ -207,12 +207,12 @@ void Rider::bookRide() {
             std::string prevDriverEntry = confirmedDriver[0] + ",isNotBooked";
             std::string newDriverEntry = confirmedDriver[0] + ",isBooked";
 
-            updateEntryInDatabase(prevDriverEntry, "availableDriver", newDriverEntry, true);
+            updateEntryInDatabase(prevDriverEntry, "availableDrivers", newDriverEntry, true);
 
             rideTypeChosen->useAmenities();
             setCurrentBalance(getCurrentBalance() - 5);
 
-            updateEntryInDatabase(newDriverEntry, "availableDriver", prevDriverEntry, true);
+            updateEntryInDatabase(newDriverEntry, "availableDrivers", prevDriverEntry, true);
         }
 
     }

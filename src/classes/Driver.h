@@ -11,20 +11,18 @@ class Driver: public User
 public:
     Driver();
 
-    void setIsAvailable();
-    bool getIsAvailable();
-    int cashOut();
+    void drive();
+    int getCurrentEarnings();
 
     ~Driver();
 
 private:
-    static int globalDriverId;
-
-    int driverId;
-
-    bool isAvailable;
+    bool isAvailableToDrive;
     int currentEarnings;
-    bool isDriving;
+
+    void setAvailableToDrive(bool state);
+    bool getAvailableToDrive();
+    void setCurrentEarnings(int amount);
 };
 
 #endif

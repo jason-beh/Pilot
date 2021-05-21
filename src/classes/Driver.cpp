@@ -1,30 +1,111 @@
 #include "Driver.h"
 #include "User.h"
+#include "../utils/createEntryInDatabase.h"
+#include "../utils/getEntryInDatabase.h"
+#include "../utils/generateUserOptions.h"
+#include "../utils/updateEntryInDatabase.h"
 
 #include <string>
+#include <iostream>
+#include <unistd.h>
+#include <fstream>
+#include <vector>
 
-using namespace std;
-
-int Driver::globalDriverId = 1;
 
 Driver::Driver() {
-
-    driverId = globalDriverId++;
-
-    isAvailable = false;
-    currentEarnings = 0;
-    isDriving = false;
+    int currentEarnings = 0;
+    bool isAvailableToDrive = false;
 }
 
-void Driver::setIsAvailable() {
+void Driver::setAvailableToDrive(bool state){
+    isAvailableToDrive = state;
+};
 
+bool Driver::getAvailableToDrive(){
+    return isAvailableToDrive;
 };
-bool Driver::getIsAvailable() {
-    return isAvailable;
+
+void Driver::setCurrentEarnings(int amount){
+    currentEarnings = amount;
 };
-int Driver::cashOut() {
-    return 1;
+
+int Driver::getCurrentEarnings(){
+    return currentEarnings;
+};
+
+void Driver::drive(){
+    std::string username = getUsername();
+
+    std::string isNotBookedState = username + ",isNotBooked";
+    std::string isBookedState = username + ",isBooked";
+
+    createEntryInDatabase(isNotBookedState, "availableDrivers");
+
+    int secondsWaited = 0;
+
+    bool isBooked = false;
+
+    setAvailableToDrive(true);
+
+    while(getAvailableToDrive() == true) {
+        if(secondsWaited > 30) {
+            std::cout << "There's no riders at the moment, please try again later." << std::endl;
+            setAvailableToDrive(false);
+            break;
+        }
+
+        if(isBooked == true) {
+            std::cout << "Driving rider to destination..." << std::endl;
+        } else {
+            std::cout << "Waiting for riders..." << std::endl;
+            secondsWaited++;
+        }
+
+        sleep(2);
+
+        bool isCurrentlyBooked = getEntryInDatabase(isNotBookedState, "availableDrivers", true).empty();
+
+        // 1. Driver is previously free but is now booked
+        // 2. Driver is previously booked but is now free
+        if(isCurrentlyBooked == true && isBooked == false) {
+            std::cout << std::endl << "Rider found!" << std::endl << std::endl;
+            isBooked = true;
+            secondsWaited = 0;
+        } else if(isCurrentlyBooked == false && isBooked == true) {
+            updateEntryInDatabase(isNotBookedState, "availableDrivers", isBookedState, true);
+
+            setCurrentEarnings(getCurrentEarnings() + 5);
+            std::cout << std::endl << "Ride complete! You have earned AUD 5 from that ride!" << std::endl << std::endl;
+
+            // prompt user to continue driving or not
+            std::cout << "Would you like to continue finding for rides?" << std::endl;
+            std::cout << "1. Yes" << std::endl;
+            std::cout << "2. No" << std::endl;
+
+            int option = generateUserOptions(2);
+
+            if(option == 1) {
+                updateEntryInDatabase(isBookedState, "availableDrivers", isNotBookedState, true);
+            } else {
+                setAvailableToDrive(false);
+            }
+
+            isBooked = false;
+            secondsWaited = 0;
+        }
+
+    }
 };
 
 
 Driver::~Driver() {}
+
+// 1. Driver is not booked, and now is booked
+// 2. Driver is not booked and is now not booked
+// 3. Driver is booked and is not not booked
+// 4. Driver is booked and is still booked
+// 
+// 
+// 
+// 
+// 
