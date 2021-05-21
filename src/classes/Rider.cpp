@@ -9,6 +9,9 @@
 
 #include <string>
 #include <iostream>
+#include <ctime>
+#include <unistd.h>
+#include <fstream>
 
 #include "../utils/generateUserOptions.h"
 #include "../utils/getUserNumberInput.h"
@@ -16,6 +19,7 @@
 #include "../utils/createEntryInDatabase.h"
 #include "../utils/updateEntryInDatabase.h"
 #include "../utils/getUserStringInput.h"
+#include "../utils/splitString.h"
 #include "../controllers/riderController.h"
 
 using namespace std;
@@ -94,9 +98,6 @@ void Rider::bookRide() {
     std::string origin = getUserStringInput("Current Location: ", true);
     std::string destination = getUserStringInput("Destination: ", false);
 
-    // std::cout << origin << std::endl;
-    // std::cout << destination << std::endl;
-
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
     std::cout << "2. Comfort" << std::endl;
@@ -116,7 +117,7 @@ void Rider::bookRide() {
         std::cout << "2. Online Banking" << std::endl;
         std::cout << "3. Cash" << std::endl;
         std::cout << "4. Account Balance" << std::endl;
-        
+
         int choice = generateUserOptions(4);
 
         PaymentMethod* paymentMethod;
@@ -137,7 +138,7 @@ void Rider::bookRide() {
                 if(getCurrentBalance() < 5) {
                     std::cout << "You don't have not enough balance in your account. Please top up before booking a ride." << std::endl;
                     return;
-                } 
+                }
                 paymentMethod = new AccountBalance();
             }
             default:
@@ -157,9 +158,62 @@ void Rider::bookRide() {
                 break;
         }
 
-        rideTypeChosen->useAmenities();
+        bool isRideConfirmed = false;
+        int secondsWaited = 0;
+        std::vector<std::string> confirmedDriver;
 
-        setCurrentBalance(getCurrentBalance() - 5);
+        std::cout << std::endl;
+
+        while(isRideConfirmed == false) {
+            if(secondsWaited > 10) {
+                std::cout << std::endl << "Unfortunately, there is no driver at the moment. Please try booking again later." << std::endl;
+                break;
+            }
+
+            secondsWaited++;
+            sleep(2);
+            std::cout << "Finding drivers..." << std::endl; 
+
+            std::string currentLine;
+            std::string databasePath = "src/database/availableDriver.txt";
+            std::ifstream fileStream(databasePath);
+
+            // Read the entire file line by line
+            while (getline(fileStream, currentLine)) {
+                if(currentLine.length() > 0) {
+                    std::vector<std::string> currentDriver = splitString(currentLine, ",");
+                    if(currentDriver[1] == "isNotBooked") {
+                        isRideConfirmed = true;
+                        confirmedDriver = currentDriver;
+                        break;
+                    }
+                    
+                }
+            }
+
+            fileStream.close();
+
+            if(isRideConfirmed == true) {
+                break;
+            }
+        }
+
+        if(isRideConfirmed == true) {
+            std::cout << std::endl << "Found driver!" << std::endl;
+
+            // std::vector<std::string> prevDriverEntry = confirmedDriver;
+            // confirmedDriver[1] = "isBooked";
+
+            std::string prevDriverEntry = confirmedDriver[0] + ",isNotBooked";
+            std::string newDriverEntry = confirmedDriver[0] + ",isBooked";
+
+            updateEntryInDatabase(prevDriverEntry, "availableDriver", newDriverEntry, true);
+
+            rideTypeChosen->useAmenities();
+            setCurrentBalance(getCurrentBalance() - 5);
+
+            updateEntryInDatabase(newDriverEntry, "availableDriver", prevDriverEntry, true);
+        }
 
     }
 }

@@ -1,4 +1,5 @@
 #include "getEntryInDatabase.h"
+#include "splitString.h"
 
 #include <fstream>
 #include <iostream>
@@ -31,19 +32,7 @@ std::vector<std::string> getEntryInDatabase(std::string searchEntry,
         }
     }
 
-    if (databaseResult != "") {
-        int pos = 0;
-        std::string delimiter = ",";
-        std::string token;
-
-        while ((pos = databaseResult.find(delimiter)) != std::string::npos) {
-            token = databaseResult.substr(0, pos);
-            finalResult.push_back(token);
-            databaseResult.erase(0, pos + delimiter.length());
-        }
-
-        finalResult.push_back(databaseResult);
-    }
+    finalResult = splitString(databaseResult, ",");
 
     // Close file stream
     fileStream.close();

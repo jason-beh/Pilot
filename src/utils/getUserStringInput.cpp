@@ -41,7 +41,7 @@ std::string getUserStringInput(std::string instruction, bool isFirstPrompt) {
         // }
 
         if (finalString.find(",") != std::string::npos) {
-            std::cout << "Input must not contain ',' or whitespace" << std::endl;
+            std::cout << "Input must not contain ','" << std::endl;
             prompt = true;
         } else {
             prompt = false;

@@ -19,25 +19,27 @@ bool CreditCard::pay(int amount) {
     int expiryDateMonth = getUserNumberInput("Expiry Date Month (e.g. 12): ");
     int cvc = getUserNumberInput("CVC: ");
 
-    const int sizeLimit = 10;
-    char formattedTime[sizeLimit];
-    time_t currentTime = time(0);
-    strftime(formattedTime, sizeLimit, "%m/%d/%Y", localtime(&currentTime));
+    // const int sizeLimit = 10;
+    // char formattedTime[sizeLimit];
+    // time_t currentTime = time(0);
+    // strftime(formattedTime, sizeLimit, "%m/%d/%Y", localtime(&currentTime));
 
-    vector<std::string> dateBreakdown;
-    std::string tempString = "";
-    for (int i = 0; i < sizeLimit; i++) {
-        if (formattedTime[i] == '/') {
-            dateBreakdown.push_back(tempString);
-            tempString = "";
-        } else {
-            tempString += formattedTime[i];
-        }
-    }
-    dateBreakdown.push_back(tempString);
+    // vector<std::string> dateBreakdown;
+    // std::string tempString = "";
+    // for (int i = 0; i < sizeLimit; i++) {
+    //     if (formattedTime[i] == '/') {
+    //         dateBreakdown.push_back(tempString);
+    //         tempString = "";
+    //     } else {
+    //         tempString += formattedTime[i];
+    //     }
+    // }
+    // dateBreakdown.push_back(tempString);
 
-    int currentMonth = stoi(dateBreakdown[0]);
-    int currentYear = stoi(dateBreakdown[2]);
+    // if(dateBreak)
+
+    int currentMonth = 5;
+    int currentYear = 2021;
     std::string lengthCVC = std::to_string(cvc);
 
     if ((currentYear > expiryDateYear) ||
