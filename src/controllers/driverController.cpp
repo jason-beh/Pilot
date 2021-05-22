@@ -13,7 +13,7 @@ void driverController(Driver* driver) {
     std::cout << "Driver's Menu" << std::endl;
     std::cout << "--------------------" << std::endl << std::endl;
 
-    std::cout << "Current Balance: AUD " << driver->getCurrentEarnings()
+    std::cout << "Current Balance: AUD " << driver->getCurrentBalance()
               << std::endl
               << std::endl;
 

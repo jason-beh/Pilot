@@ -17,9 +17,6 @@ class Rider: public User
         void bookRide();
 
         ~Rider();
-
-    private:
-        int currentBalance;
 };
 
 #endif

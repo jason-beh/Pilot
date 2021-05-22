@@ -11,9 +11,7 @@
 #include <fstream>
 #include <vector>
 
-
 Driver::Driver() {
-    int currentEarnings = 0;
     bool isAvailableToDrive = false;
 }
 
@@ -25,13 +23,13 @@ bool Driver::getAvailableToDrive(){
     return isAvailableToDrive;
 };
 
-void Driver::setCurrentEarnings(int amount){
-    currentEarnings = amount;
-};
+void Driver::setCurrentBalance(int amount) {
+    User::setCurrentBalance(amount, "balanceDriver");
+}
 
-int Driver::getCurrentEarnings(){
-    return currentEarnings;
-};
+int Driver::getCurrentBalance() {
+    return User::getCurrentBalance("balanceDriver");
+}
 
 void Driver::drive(){
     std::string username = getUsername();
@@ -74,7 +72,7 @@ void Driver::drive(){
         } else if(isCurrentlyBooked == false && isBooked == true) {
             updateEntryInDatabase(isNotBookedState, "availableDrivers", isBookedState, true);
 
-            setCurrentEarnings(getCurrentEarnings() + 5);
+            setCurrentBalance(getCurrentBalance() + 5);
             std::cout << std::endl << "Ride complete! You have earned AUD 5 from that ride!" << std::endl << std::endl;
 
             // prompt user to continue driving or not
@@ -99,13 +97,3 @@ void Driver::drive(){
 
 
 Driver::~Driver() {}
-
-// 1. Driver is not booked, and now is booked
-// 2. Driver is not booked and is now not booked
-// 3. Driver is booked and is not not booked
-// 4. Driver is booked and is still booked
-// 
-// 
-// 
-// 
-// 

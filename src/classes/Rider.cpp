@@ -22,40 +22,16 @@
 #include "../utils/splitString.h"
 #include "../controllers/riderController.h"
 
-using namespace std;
-
 Rider::Rider() {
     int currentBalance = 0;
 }
 
 void Rider::setCurrentBalance(int amount) {
-    std::string username  = getUsername();
-
-    std::string newDatabaseEntry = username + "," + std::to_string(amount);
-
-    updateEntryInDatabase(username, "balanceRider", newDatabaseEntry, false);
-
-    currentBalance = amount;
+    User::setCurrentBalance(amount, "balanceRider");
 }
 
 int Rider::getCurrentBalance() {
-    if(currentBalance == 0) {
-        std::string username  = getUsername();
-
-        vector<std::string> databaseResults = getEntryInDatabase(username, "balanceRider", false);
-
-        if(databaseResults.empty() == false && databaseResults[0] == username) {
-            std::string balance = databaseResults[1];
-            setCurrentBalance(stoi(balance));
-            return stoi(balance);
-        } else {
-            std::string newDatabaseEntry = username + ",0";
-            createEntryInDatabase(newDatabaseEntry, "balanceRider");
-            return 0;
-        }
-    }
-
-    return currentBalance;
+    return User::getCurrentBalance("balanceRider");
 }
 
 bool Rider::topUp() {

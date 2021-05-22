@@ -12,17 +12,16 @@ public:
     Driver();
 
     void drive();
-    int getCurrentEarnings();
+    int getCurrentBalance();
+    void setCurrentBalance(int amount);
 
     ~Driver();
 
 private:
     bool isAvailableToDrive;
-    int currentEarnings;
 
     void setAvailableToDrive(bool state);
     bool getAvailableToDrive();
-    void setCurrentEarnings(int amount);
 };
 
 #endif

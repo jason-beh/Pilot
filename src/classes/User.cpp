@@ -8,11 +8,13 @@
 #include "../utils/createEntryInDatabase.h"
 #include "../utils/getEntryInDatabase.h"
 #include "../utils/getUserStringInput.h"
+#include "../utils/updateEntryInDatabase.h"
 
 User::User() {
     isLoggedIn = false;
     username = "";
     password = "";
+    currentBalance = 0;
 }
 
 std::string User::getUsername() { return username; }
@@ -119,5 +121,35 @@ bool User::login(std::string userType) {
 
     return true;
 };
+
+void User::setCurrentBalance(int amount, std::string databaseName) {
+    std::string username = getUsername();
+
+    std::string newDatabaseEntry = username + "," + std::to_string(amount);
+
+    updateEntryInDatabase(username, databaseName, newDatabaseEntry, false);
+
+    currentBalance = amount;
+}
+
+int User::getCurrentBalance(std::string databaseName) {
+    if(currentBalance == 0) {
+        std::string username  = getUsername();
+
+        std::vector<std::string> databaseResults = getEntryInDatabase(username, databaseName, false);
+
+        if(databaseResults.empty() == false && databaseResults[0] == username) {
+            std::string balance = databaseResults[1];
+            setCurrentBalance(stoi(balance), databaseName);
+            return stoi(balance);
+        } else {
+            std::string newDatabaseEntry = username + ",0";
+            createEntryInDatabase(newDatabaseEntry, databaseName);
+            return 0;
+        }
+    }
+
+    return currentBalance;
+}
 
 User::~User() {}

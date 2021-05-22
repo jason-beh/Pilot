@@ -11,6 +11,7 @@ class User {
         std::string username;
         std::string password;
         bool isLoggedIn;
+        int currentBalance;
 
     public:
         User();
@@ -24,6 +25,10 @@ class User {
         bool signUp(std::string userType);
         bool login(std::string userType);
         std::string getUsername();
+
+    protected:
+        void setCurrentBalance(int amount, std::string databaseName);
+        int getCurrentBalance(std::string databaseName);
 };
 
 #endif
