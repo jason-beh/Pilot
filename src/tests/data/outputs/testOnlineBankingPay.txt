@@ -11,3 +11,11 @@ Enter decision:
 Redirecting you to the bank you have chosen...
 
 7
+6
+5
+4
+3
+2
+1
+
+Topped up AUD10 successfully!

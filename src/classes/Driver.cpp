@@ -49,6 +49,7 @@ void Driver::drive(){
         if(secondsWaited > 5) {
             std::cout << "There's no riders at the moment, please try again later." << std::endl;
             setAvailableToDrive(false);
+            updateEntryInDatabase(isNotBookedState, "availableDrivers", "", true);
             break;
         }
 

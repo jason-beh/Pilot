@@ -1,0 +1,49 @@
+---------------------------------------
+Welcome to Pilot!
+---------------------------------------
+To begin using Pilot, are you a driver or rider? (Please select your options based on the number)
+
+1. Rider
+2. Driver
+
+Enter decision: 
+Would you like to sign up for a new account or login?
+
+1. Login
+2. Signup
+
+Enter decision: 
+-----------------------
+Sign up as Driver
+-----------------------
+Username: Password: Confirm Password: Sign up successfully!
+
+--------------------
+Driver's Menu
+--------------------
+
+Current Balance: AUD 0
+
+1. Drive
+2. Exit
+
+Enter decision: 
+Waiting for riders...
+Waiting for riders...
+Waiting for riders...
+Waiting for riders...
+Waiting for riders...
+Waiting for riders...
+There's no riders at the moment, please try again later.
+
+--------------------
+Driver's Menu
+--------------------
+
+Current Balance: AUD 0
+
+1. Drive
+2. Exit
+
+Enter decision: 
+We hope to see you again, test!

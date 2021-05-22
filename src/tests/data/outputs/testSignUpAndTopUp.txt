@@ -1,0 +1,70 @@
+---------------------------------------
+Welcome to Pilot!
+---------------------------------------
+To begin using Pilot, are you a driver or rider? (Please select your options based on the number)
+
+1. Rider
+2. Driver
+
+Enter decision: 
+Would you like to sign up for a new account or login?
+
+1. Login
+2. Signup
+
+Enter decision: 
+-----------------------
+Sign up as Rider
+-----------------------
+Username: Password: Confirm Password: Sign up successfully!
+
+--------------------
+Rider's Menu
+--------------------
+
+Current Balance: AUD 0
+
+1. Book Ride
+2. Top Up
+3. Exit App
+
+Enter decision: 
+How much would you like to topup?
+Topup amount: Please select a method for topup.
+
+1. Credit Card
+2. Online Banking
+
+Enter decision: 
+Please choose the your preferred bank from the list below.
+1. Commonwealth Bank
+2. ANZ Bank
+3. Westpac Bank
+4. Bank of Queensland
+5. National Australia Bank
+
+Enter decision: 
+Redirecting you to the bank you have chosen...
+
+7
+6
+5
+4
+3
+2
+1
+
+Topped up AUD100 successfully!
+
+--------------------
+Rider's Menu
+--------------------
+
+Current Balance: AUD 100
+
+1. Book Ride
+2. Top Up
+3. Exit App
+
+Enter decision: 
+We hope to see you again, test!

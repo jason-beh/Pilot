@@ -5,9 +5,8 @@
 #include "../../utils/updateEntryInDatabase.h"
 
 int main() {
-    createEntryInDatabase("test,10005", "authRider");
     authController();
 
-    updateEntryInDatabase("test,10005", "authRider", "", true);
-    updateEntryInDatabase("test,0", "balanceRider", "", true);
+    updateEntryInDatabase("test,10005", "authDriver", "", true);
+    updateEntryInDatabase("test,0", "balanceDriver", "", true);
 }
