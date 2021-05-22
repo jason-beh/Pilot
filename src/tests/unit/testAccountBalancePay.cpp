@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "../classes/AccountBalance.h"
+#include "../../classes/AccountBalance.h"
 
 int main() {
     AccountBalance* accountBalance = new AccountBalance();

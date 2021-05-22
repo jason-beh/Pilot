@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/getUserLongNumberInput.h"
+#include "../../utils/getUserLongNumberInput.h"
 
 int main() {
     getUserLongNumberInput("Enter your decision here: ");

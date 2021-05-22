@@ -1,0 +1,55 @@
+
+Welcome to your ride! You can now do the following: 
+1. Turn on radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned on!
+
+Welcome to your ride! You can now do the following: 
+1. Turn off radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned off!
+
+Welcome to your ride! You can now do the following: 
+1. Turn on radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned on!
+
+Welcome to your ride! You can now do the following: 
+1. Turn off radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned off!
+
+Welcome to your ride! You can now do the following: 
+1. Turn on radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned on!
+
+Welcome to your ride! You can now do the following: 
+1. Turn off radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned off!
+
+Welcome to your ride! You can now do the following: 
+1. Turn on radio
+2. Complete Ride
+
+Enter decision: 
+Radio is now turned on!
+
+Welcome to your ride! You can now do the following: 
+1. Turn off radio
+2. Complete Ride
+
+Enter decision: 

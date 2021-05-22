@@ -1,5 +1,5 @@
-Enter your decision here: Input must not contain ',' or whitespace
-Enter your decision here: Input must not contain ',' or whitespace
-Enter your decision here: Input must not contain ',' or whitespace
+Enter your decision here: Input must not contain ','
+Enter your decision here: Input must not contain ','
+Enter your decision here: Input must not contain ','
 Enter your decision here: 
 getUserStringInput  - Passed

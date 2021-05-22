@@ -2,13 +2,11 @@
 #include <cassert>
 #include <vector>
 
-#include "testUpdateEntryInDatabase.h"
-
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/updateEntryInDatabase.h"
 #include "../../utils/getEntryInDatabase.h"
 
-void testUpdateEntryInDatabase() {
+int main() {
     remove("src/database/testAuth.txt");
 
     std::cout << "updateEntryInDatabase ";

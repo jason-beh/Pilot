@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cassert>
 
-#include "../classes/Rider.h"
-#include "../utils/createEntryInDatabase.h"
-#include "../utils/updateEntryInDatabase.h"
+#include "../../classes/Rider.h"
+#include "../../utils/createEntryInDatabase.h"
+#include "../../utils/updateEntryInDatabase.h"
 
 int main() {
     createEntryInDatabase("test,10005", "authRider");
@@ -15,13 +15,14 @@ int main() {
     int currentBalance = rider->getCurrentBalance();
     assert(currentBalance == 0);
 
-    rider->setCurrentBalance(10);
+    rider->topUp();
+
     currentBalance = rider->getCurrentBalance();
-    assert(currentBalance == 10);
+    assert(currentBalance == 100);
     
     delete rider;
     rider = nullptr;
 
     updateEntryInDatabase("test,10005", "authRider", "", true);
-    updateEntryInDatabase("test,10", "balanceRider", "", true);
+    updateEntryInDatabase("test,100", "balanceRider", "", true);
 }

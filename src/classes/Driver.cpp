@@ -46,7 +46,7 @@ void Driver::drive(){
     setAvailableToDrive(true);
 
     while(getAvailableToDrive() == true) {
-        if(secondsWaited > 30) {
+        if(secondsWaited > 5) {
             std::cout << "There's no riders at the moment, please try again later." << std::endl;
             setAvailableToDrive(false);
             break;

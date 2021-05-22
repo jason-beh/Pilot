@@ -144,7 +144,7 @@ void Rider::bookRide() {
         std::cout << std::endl;
 
         while(isRideConfirmed == false) {
-            if(secondsWaited > 10) {
+            if(secondsWaited > 5) {
                 std::cout << std::endl << "Unfortunately, there is no driver at the moment. Please try booking again later." << std::endl;
                 break;
             }

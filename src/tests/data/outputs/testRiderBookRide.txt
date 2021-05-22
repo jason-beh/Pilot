@@ -1,0 +1,30 @@
+Current Location: Destination: 
+Please select the type of ride: 
+1. Standard
+2. Luxury
+
+Enter decision: Please enter 1 or 2 only
+
+Enter decision: 
+The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?
+1. Yes
+2. No
+
+Enter decision: 
+Please select your preferred payment method: 
+1. Credit Card
+2. Online Banking
+3. Cash
+4. Account Balance
+
+Enter decision: 
+Awesome! Please make sure to pay AUD5 once you have reached your destination.
+
+Finding drivers...
+Finding drivers...
+Finding drivers...
+Finding drivers...
+Finding drivers...
+Finding drivers...
+
+Unfortunately, there is no driver at the moment. Please try booking again later.

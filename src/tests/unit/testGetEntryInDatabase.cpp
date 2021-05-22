@@ -1,5 +1,3 @@
-#include "testGetEntryInDatabase.h"
-
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -7,7 +5,7 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/getEntryInDatabase.h"
 
-void testGetEntryInDatabase() {
+int main() {
     remove("src/database/testAuth.txt");
     std::cout << "getEntryInDatabase ";
 

@@ -1,0 +1,110 @@
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Served wine!
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Wine has run out
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Wine has run out
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Please enter a movie you would like to watch: 
+Playing chosen song now
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Please enter a movie you would like to watch: 
+Playing chosen movie now
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Massage chair is now turned on
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn off massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Massage chair is now turned off
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn on massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Massage chair is now turned on
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn off massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Wine has run out
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn off massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 
+Wine has run out
+
+Welcome to your ride! You can now do the following: 
+1. Drink wine
+2. Turn off massage chair
+3. Choose song
+4. Choose movie
+5. Complete ride
+
+Enter decision: 

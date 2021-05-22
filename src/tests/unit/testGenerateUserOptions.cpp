@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/generateUserOptions.h"
+#include "../../utils/generateUserOptions.h"
 
 int main() {
     // 5 inputs

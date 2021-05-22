@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "../classes/Cash.h"
+#include "../../classes/Cash.h"
 
 int main() {
     Cash* cash = new Cash();

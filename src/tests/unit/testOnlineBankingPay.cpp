@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cassert>
 
-#include "../classes/OnlineBanking.h"
-#include "../utils/createEntryInDatabase.h"
-#include "../utils/updateEntryInDatabase.h"
+#include "../../classes/OnlineBanking.h"
+#include "../../utils/createEntryInDatabase.h"
+#include "../../utils/updateEntryInDatabase.h"
 
 int main() {
     OnlineBanking* onlineBanking = new OnlineBanking();

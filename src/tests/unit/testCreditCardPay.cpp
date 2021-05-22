@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cassert>
 
-#include "../classes/CreditCard.h"
-#include "../utils/createEntryInDatabase.h"
-#include "../utils/updateEntryInDatabase.h"
+#include "../../classes/CreditCard.h"
+#include "../../utils/createEntryInDatabase.h"
+#include "../../utils/updateEntryInDatabase.h"
 
 int main() {
     CreditCard* creditCard = new CreditCard();

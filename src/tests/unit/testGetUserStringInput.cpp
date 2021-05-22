@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../utils/getUserStringInput.h"
+#include "../../utils/getUserStringInput.h"
 
 int main() {
     // std::cin.ignore();

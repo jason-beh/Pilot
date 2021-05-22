@@ -6,6 +6,7 @@ SRC_DIR = src
 DATABASE_DIR = ${SRC_DIR}/database
 TEST_DIR = ${SRC_DIR}/tests
 TESTDATA_DIR = ${TEST_DIR}/data
+TESTUNIT_DIR = ${TEST_DIR}/unit
 TESTDATAINPUT_DIR = ${TESTDATA_DIR}/inputs
 TESTDATAOUTPUT_DIR = ${TESTDATA_DIR}/outputs
 
@@ -14,7 +15,7 @@ CPP_SRC = $(wildcard $(SRC_DIR)/**/*.cpp) \
 		$(wildcard $(SRC_DIR)/**/**/*.cpp) \
 		$(wildcard $(SRC_DIR)/**/**/**/*.cpp)
 
-CPP_SRC_FILTERED := $(filter-out $(SRC_DIR)/main.cpp $(wildcard $(TEST_DIR)/*.cpp), $(CPP_SRC))
+CPP_SRC_FILTERED := $(filter-out $(SRC_DIR)/main.cpp $(wildcard $(TESTUNIT_DIR)/*.cpp), $(CPP_SRC))
 OBJ_FILTERED = $(CPP_SRC_FILTERED:.cpp=.o)
 
 OBJ = $(CPP_SRC:.cpp=.o)
@@ -28,14 +29,10 @@ main: $(OBJ_FILTERED)
 	$(CC) $(SRC_DIR)/main.cpp -o ${BUILD_DIR}/$@ $^
 	./${BUILD_DIR}/$@
 
-allTests: test testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput
+allTests: testRiderBookRide testDrive testRideUseAmenities testLuxuryRideUseAmenities testSplitString testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput
 
-test: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
-	./${BUILD_DIR}/$@
-
-testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput: $(OBJ_FILTERED)
-	$(CC) $(TEST_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
+testRiderBookRide testDrive testRideUseAmenities testLuxuryRideUseAmenities testSplitString testGetEntryInDatabase testGetUserNumberInput testGetUserLongNumberInput testGenerateUserOptions testLogin testSignUp testOnlineBankingPay testCreditCardPay testCashPay testRiderGetCurrentBalance testRiderSetCurrentBalance testRiderTopUp testAccountBalancePay testGetUserStringInput: $(OBJ_FILTERED)
+	$(CC) $(CFLAGS) $(TESTUNIT_DIR)/$@.cpp -o ${BUILD_DIR}/$@ $^
 	# ./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt | diff - ${TESTDATAOUTPUT_DIR}/$@.txt
 	./${BUILD_DIR}/$@ < ${TESTDATAINPUT_DIR}/$@.txt > ${TESTDATAOUTPUT_DIR}/$@.txt
 
