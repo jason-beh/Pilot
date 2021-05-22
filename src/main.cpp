@@ -14,15 +14,4 @@
 int main()
 {  
     authController();
-
-    // Rider* rider = new Rider();
-
-    // rider->topUp(50);
-
-    // riderController(rider);
-
-    // std::string test = "2041";
-    // int currentYear = stoi(test.substr(2,2));
-
-    // std::cout << currentYear << std::endl;
 }

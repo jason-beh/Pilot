@@ -69,17 +69,15 @@ bool Rider::topUp() {
 };
 
 void Rider::bookRide() {
-    Ride* rideTypeChosen;
 
     std::string origin = getUserStringInput("Current Location: ", true);
     std::string destination = getUserStringInput("Destination: ", false);
 
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
-    std::cout << "2. Comfort" << std::endl;
-    std::cout << "3. Luxury" << std::endl;
+    std::cout << "2. Luxury" << std::endl;
 
-    int userRideOption = generateUserOptions(3);
+    int userRideOption = generateUserOptions(2);
 
     std::cout << "The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?" << std::endl;
     std::cout << "1. Yes" << std::endl;
@@ -97,6 +95,8 @@ void Rider::bookRide() {
         int choice = generateUserOptions(4);
 
         PaymentMethod* paymentMethod;
+        Ride* rideTypeChosen;
+        bool isPayWithAccountBalance = false;
 
         switch(choice) {
             case 1: {
@@ -109,6 +109,7 @@ void Rider::bookRide() {
             }
             case 3: {
                 paymentMethod = new Cash();
+                break;
             }
             case 4: {
                 if(getCurrentBalance() < 5) {
@@ -116,6 +117,8 @@ void Rider::bookRide() {
                     return;
                 }
                 paymentMethod = new AccountBalance();
+                isPayWithAccountBalance = true;
+                break;
             }
             default:
                 break;
@@ -127,7 +130,7 @@ void Rider::bookRide() {
             case 1:
                 rideTypeChosen = new Ride(std::time(0), this, 5, origin, destination, paymentMethod);
                 break;
-            case 3:
+            case 2:
                 rideTypeChosen = new LuxuryRide(std::time(0), this, 5, origin, destination, paymentMethod);
                 break;
             default:
@@ -177,18 +180,20 @@ void Rider::bookRide() {
         if(isRideConfirmed == true) {
             std::cout << std::endl << "Found driver!" << std::endl;
 
-            // std::vector<std::string> prevDriverEntry = confirmedDriver;
-            // confirmedDriver[1] = "isBooked";
-
             std::string prevDriverEntry = confirmedDriver[0] + ",isNotBooked";
             std::string newDriverEntry = confirmedDriver[0] + ",isBooked";
 
             updateEntryInDatabase(prevDriverEntry, "availableDrivers", newDriverEntry, true);
 
             rideTypeChosen->useAmenities();
-            setCurrentBalance(getCurrentBalance() - 5);
+            if(isPayWithAccountBalance == true) {
+                setCurrentBalance(getCurrentBalance() - 5);
+            }
 
             updateEntryInDatabase(newDriverEntry, "availableDrivers", prevDriverEntry, true);
+
+            delete rideTypeChosen;
+            rideTypeChosen = nullptr;
         }
 
     }

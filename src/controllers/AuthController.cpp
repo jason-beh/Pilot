@@ -27,6 +27,11 @@ void authController()
 
         riderController(rider);
 
+        std::cout << "We hope to see you again, " << rider->getUsername() << "!" << std::endl;
+
+        delete rider;
+        rider = nullptr;
+
     } else {
         Driver* driver = new Driver();
 
@@ -36,6 +41,11 @@ void authController()
             driver->signUp("Driver");
 
         driverController(driver);
+
+        std::cout << "We hope to see you again, " << driver->getUsername() << "!" << std::endl;
+
+        delete driver;
+        driver = nullptr;
     }
     
 }

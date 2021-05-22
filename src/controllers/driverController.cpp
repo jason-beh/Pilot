@@ -8,6 +8,8 @@
 #include "driverController.h"
 
 void driverController(Driver* driver) {
+    bool quitApp = false;
+
     std::cout << std::endl;
     std::cout << "--------------------" << std::endl;
     std::cout << "Driver's Menu" << std::endl;
@@ -27,9 +29,11 @@ void driverController(Driver* driver) {
             driver->drive();
             break;
         case 2:
-            std::cout << "Quit app!" << std::endl;
+            quitApp = true;
             break;
     }
 
-    driverController(driver);
+    if(quitApp == false) {
+        driverController(driver);
+    } 
 }

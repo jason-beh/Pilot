@@ -86,6 +86,7 @@ void Driver::drive(){
                 updateEntryInDatabase(isBookedState, "availableDrivers", isNotBookedState, true);
             } else {
                 setAvailableToDrive(false);
+                updateEntryInDatabase(isBookedState, "availableDrivers", "", true);
             }
 
             isBooked = false;

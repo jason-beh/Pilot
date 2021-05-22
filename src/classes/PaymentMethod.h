@@ -15,7 +15,7 @@ public:
 
     virtual bool pay(int amount)=0;
 
-    ~PaymentMethod();
+    virtual ~PaymentMethod();
 
 };
 

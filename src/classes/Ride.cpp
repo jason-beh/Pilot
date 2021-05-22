@@ -15,10 +15,6 @@ Ride::Ride(time_t createdAt, Rider* rider, int price, std::string origin, std::s
     this->paymentMethod = paymentMethod;
 }
 
-void Ride::setDriver(Driver* newDriver) {
-    driver = newDriver;
-};
-
 void Ride::useAmenities() {
     std::cout << std::endl << "Welcome to your ride! You can now do the following: " << std::endl;
 

@@ -5,22 +5,24 @@
 
 #include "Driver.h"
 #include "PaymentMethod.h"
-#include "Rider.h"
 #include "Ride.h"
+#include "Rider.h"
 
-class LuxuryRide: public Ride {
+class LuxuryRide : public Ride {
    private:
-     int remainingWineServings;
-     bool isMassageChairOn;
-     std::string currentMovie;
-     std::string currentSong;
+    bool isWineServed;
+    bool isMassageChairOn;
+    std::string currentMovie;
+    std::string currentSong;
 
    public:
-        using Ride::Ride;
+    // using Ride::Ride;
+    LuxuryRide(time_t createdAt, Rider* rider, int price, std::string origin,
+               std::string destination, PaymentMethod* paymentMethod);
 
-        virtual void useAmenities() override;
+    virtual void useAmenities() override;
 
-        ~LuxuryRide();
+    ~LuxuryRide();
 };
 
 #endif
