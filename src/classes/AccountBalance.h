@@ -5,17 +5,13 @@
 
 #include "PaymentMethod.h"
 
-class AccountBalance : public PaymentMethod
-{
-private:
-
-public:
+class AccountBalance : public PaymentMethod {
+  public:
     AccountBalance();
 
     virtual bool pay(int amount);
 
     ~AccountBalance();
-
 };
 
 #endif

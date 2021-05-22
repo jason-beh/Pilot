@@ -29,7 +29,6 @@ void User::setUsername(std::string newUsername) { username = newUsername; };
 void User::setPassword(std::string newPassword) { password = newPassword; };
 
 bool User::signUp(std::string userType) {
-    // Get all relevant details
     std::cout << "-----------------------" << std::endl;
     std::cout << "Sign up as " << userType << std::endl;
     std::cout << "-----------------------" << std::endl;
@@ -40,8 +39,6 @@ bool User::signUp(std::string userType) {
     std::string username;
     std::string password;
     std::string confirmPassword;
-
-    // std::cin.ignore();
 
     do {
         // Get relevant details for signup
@@ -94,6 +91,7 @@ bool User::login(std::string userType) {
     std::string password;
 
     do {
+        // Get relevant details for login
         username = getUserStringInput("Username: ", true);
         password = getUserStringInput("Password: ", false);
 
@@ -124,21 +122,27 @@ bool User::login(std::string userType) {
 
 void User::setCurrentBalance(int amount, std::string databaseName) {
     std::string username = getUsername();
-
     std::string newDatabaseEntry = username + "," + std::to_string(amount);
 
+    // Update user's current balance in database
     updateEntryInDatabase(username, databaseName, newDatabaseEntry, false);
 
+    // Update user object's current balance
     currentBalance = amount;
 }
 
 int User::getCurrentBalance(std::string databaseName) {
-    if(currentBalance == 0) {
-        std::string username  = getUsername();
+    // Perform database check if the current balance is 0 (Suitable when initialized)
+    if (currentBalance == 0) {
+        std::string username = getUsername();
 
-        std::vector<std::string> databaseResults = getEntryInDatabase(username, databaseName, false);
+        std::vector<std::string> databaseResults =
+            getEntryInDatabase(username, databaseName, false);
 
-        if(databaseResults.empty() == false && databaseResults[0] == username) {
+        // If user is just created, create new entry in current balance database
+        // Else retrieve user current balance from database
+        if (databaseResults.empty() == false &&
+            databaseResults[0] == username) {
             std::string balance = databaseResults[1];
             setCurrentBalance(stoi(balance), databaseName);
             return stoi(balance);

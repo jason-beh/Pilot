@@ -3,20 +3,13 @@
 
 #include <string>
 
-#include "Driver.h"
-#include "Rider.h"
-
-class PaymentMethod
-{
-private:
-
-public:
+class PaymentMethod {
+  public:
     PaymentMethod();
 
-    virtual bool pay(int amount)=0;
+    virtual bool pay(int amount) = 0;
 
     virtual ~PaymentMethod();
-
 };
 
 #endif

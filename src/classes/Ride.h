@@ -8,23 +8,23 @@
 #include "Rider.h"
 
 class Ride {
-   private:
-        Rider* rider;
-        PaymentMethod* paymentMethod;
-        int price;
-        std::string origin;
-        std::string destination;
-        time_t createdAt;
+  private:
+    Rider *rider;
+    PaymentMethod *paymentMethod;
+    int price;
+    std::string origin;
+    std::string destination;
+    time_t createdAt;
 
-        bool isRadioOn;
+    bool isRadioOn;
 
-   public:
-        Ride(time_t createdAt, Rider* rider, int price, std::string origin,
-            std::string destination, PaymentMethod* paymentMethod);
+  public:
+    Ride(time_t createdAt, Rider *rider, int price, std::string origin,
+         std::string destination, PaymentMethod *paymentMethod);
 
-        virtual void useAmenities();
+    virtual void useAmenities();
 
-        ~Ride();
+    ~Ride();
 };
 
 #endif

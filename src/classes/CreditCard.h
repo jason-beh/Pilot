@@ -5,17 +5,14 @@
 
 #include "PaymentMethod.h"
 
-class CreditCard : public PaymentMethod
-{
-private:
-
-public:
+class CreditCard : public PaymentMethod {
+  private:
+  public:
     CreditCard();
 
     virtual bool pay(int amount);
 
     ~CreditCard();
-
 };
 
 #endif

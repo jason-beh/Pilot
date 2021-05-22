@@ -9,16 +9,15 @@
 #include "Rider.h"
 
 class LuxuryRide : public Ride {
-   private:
+  private:
     bool isWineServed;
     bool isMassageChairOn;
     std::string currentMovie;
     std::string currentSong;
 
-   public:
-    // using Ride::Ride;
-    LuxuryRide(time_t createdAt, Rider* rider, int price, std::string origin,
-               std::string destination, PaymentMethod* paymentMethod);
+  public:
+    LuxuryRide(time_t createdAt, Rider *rider, int price, std::string origin,
+               std::string destination, PaymentMethod *paymentMethod);
 
     virtual void useAmenities() override;
 

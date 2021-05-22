@@ -1,15 +1,15 @@
 #include "AccountBalance.h"
 
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-AccountBalance::AccountBalance() {
-}
+AccountBalance::AccountBalance() {}
 
 bool AccountBalance::pay(int amount) {
-    std::cout << "AUD" << amount << " will be deducted from your balance." << std::endl;
+    std::cout << "AUD" << amount << " will be deducted from your balance."
+              << std::endl;
 
     return true;
 }

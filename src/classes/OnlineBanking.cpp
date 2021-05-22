@@ -1,17 +1,20 @@
 #include "OnlineBanking.h"
-#include "../utils/generateUserOptions.h"
 
 #include <unistd.h>
-#include <string>
+
 #include <iostream>
+#include <string>
+
+#include "../utils/generateUserOptions.h"
 
 using namespace std;
 
-OnlineBanking::OnlineBanking() {
-}
+OnlineBanking::OnlineBanking() {}
 
 bool OnlineBanking::pay(int amount) {
-    std::cout << "Please choose the your preferred bank from the list below." << std::endl;
+    // Prompt user to choose type of bank
+    std::cout << "Please choose the your preferred bank from the list below."
+              << std::endl;
 
     std::cout << "1. Commonwealth Bank" << std::endl;
     std::cout << "2. ANZ Bank" << std::endl;
@@ -21,20 +24,17 @@ bool OnlineBanking::pay(int amount) {
 
     generateUserOptions(5);
 
-    std::cout << "Redirecting you to the bank you have chosen..." << std::endl << std::endl;;
+    // Countdown to simluate to a third party API
+    std::cout << "Redirecting you to the bank you have chosen..." << std::endl
+              << std::endl;
 
-    // Countdown
     int seconds = 7;
-
-    while(seconds > 0) {
+    while (seconds > 0) {
         std::cout << seconds-- << std::endl;
         sleep(1);
     }
 
-    std::cout << std::endl;
-    
-    std::cout << "Topped up AUD" << amount << " successfully!" << std::endl;
-
+    std::cout << std::endl << "Topped up AUD" << amount << " successfully!" << std::endl;
 
     return true;
 }

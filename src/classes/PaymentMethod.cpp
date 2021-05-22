@@ -4,7 +4,6 @@
 
 using namespace std;
 
-PaymentMethod::PaymentMethod() {
-}
+PaymentMethod::PaymentMethod() {}
 
 PaymentMethod::~PaymentMethod() {}

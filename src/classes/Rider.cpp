@@ -1,30 +1,29 @@
 #include "Rider.h"
-#include "User.h"
-#include "CreditCard.h"
-#include "OnlineBanking.h"
-#include "Cash.h"
-#include "Ride.h"
-#include "LuxuryRide.h"
-#include "AccountBalance.h"
 
-#include <string>
-#include <iostream>
-#include <ctime>
 #include <unistd.h>
-#include <fstream>
 
-#include "../utils/generateUserOptions.h"
-#include "../utils/getUserNumberInput.h"
-#include "../utils/getEntryInDatabase.h"
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "../controllers/riderController.h"
 #include "../utils/createEntryInDatabase.h"
-#include "../utils/updateEntryInDatabase.h"
+#include "../utils/generateUserOptions.h"
+#include "../utils/getEntryInDatabase.h"
+#include "../utils/getUserNumberInput.h"
 #include "../utils/getUserStringInput.h"
 #include "../utils/splitString.h"
-#include "../controllers/riderController.h"
+#include "../utils/updateEntryInDatabase.h"
+#include "AccountBalance.h"
+#include "Cash.h"
+#include "CreditCard.h"
+#include "LuxuryRide.h"
+#include "OnlineBanking.h"
+#include "Ride.h"
+#include "User.h"
 
-Rider::Rider() {
-    int currentBalance = 0;
-}
+Rider::Rider() { int currentBalance = 0; }
 
 void Rider::setCurrentBalance(int amount) {
     User::setCurrentBalance(amount, "balanceRider");
@@ -35,25 +34,26 @@ int Rider::getCurrentBalance() {
 }
 
 bool Rider::topUp() {
+    // Prompt user to provide topup amount
     std::cout << "How much would you like to topup?" << std::endl;
     int amount = getUserNumberInput("Topup amount: ");
 
+    // Prompt user to choose topup method
     std::cout << "Please select a method for topup." << std::endl << std::endl;
-
     std::cout << "1. Credit Card" << std::endl;
     std::cout << "2. Online Banking" << std::endl;
 
     int choice = generateUserOptions(2);
     int isTopUpSuccessful = false;
 
-    switch(choice) {
+    switch (choice) {
         case 1: {
-            CreditCard* creditCardPayment = new CreditCard();
+            CreditCard *creditCardPayment = new CreditCard();
             isTopUpSuccessful = creditCardPayment->pay(amount);
             break;
         }
         case 2: {
-            OnlineBanking* onlineBankingPayment = new OnlineBanking();
+            OnlineBanking *onlineBankingPayment = new OnlineBanking();
             isTopUpSuccessful = onlineBankingPayment->pay(amount);
             break;
         }
@@ -61,7 +61,8 @@ bool Rider::topUp() {
             break;
     }
 
-    if(isTopUpSuccessful == true) {
+    // Increase user currentBalance based on successful topup amount
+    if (isTopUpSuccessful == true) {
         setCurrentBalance(amount + getCurrentBalance());
     }
 
@@ -69,24 +70,30 @@ bool Rider::topUp() {
 };
 
 void Rider::bookRide() {
-
+    // Prompt ride origin and destination
     std::string origin = getUserStringInput("Current Location: ", true);
     std::string destination = getUserStringInput("Destination: ", false);
 
+    // Prompt ride type selection
     std::cout << std::endl << "Please select the type of ride: " << std::endl;
     std::cout << "1. Standard" << std::endl;
     std::cout << "2. Luxury" << std::endl;
 
     int userRideOption = generateUserOptions(2);
 
-    std::cout << "The price will be a flat rate of AUD 5, as Pilot has just launched! Would you like to proceed?" << std::endl;
+    // Prompt to proceed with current promo price of AUD 5
+    std::cout << "The price will be a flat rate of AUD 5, as Pilot has just "
+                 "launched! Would you like to proceed?"
+              << std::endl;
     std::cout << "1. Yes" << std::endl;
     std::cout << "2. No" << std::endl;
 
     int option = generateUserOptions(2);
 
-    if(option == 1) {
-        std::cout << "Please select your preferred payment method: " << std::endl;
+    if (option == 1) {
+        // Prompt user to choose payment method
+        std::cout << "Please select your preferred payment method: "
+                  << std::endl;
         std::cout << "1. Credit Card" << std::endl;
         std::cout << "2. Online Banking" << std::endl;
         std::cout << "3. Cash" << std::endl;
@@ -94,11 +101,11 @@ void Rider::bookRide() {
 
         int choice = generateUserOptions(4);
 
-        PaymentMethod* paymentMethod;
-        Ride* rideTypeChosen;
+        PaymentMethod *paymentMethod;
+        Ride *rideTypeChosen;
         bool isPayWithAccountBalance = false;
 
-        switch(choice) {
+        switch (choice) {
             case 1: {
                 paymentMethod = new CreditCard();
                 break;
@@ -112,8 +119,12 @@ void Rider::bookRide() {
                 break;
             }
             case 4: {
-                if(getCurrentBalance() < 5) {
-                    std::cout << "You don't have not enough balance in your account. Please top up before booking a ride." << std::endl;
+                // Reject the booking if the user selected account balance, but
+                // there is less than AUD 5 in account balance
+                if (getCurrentBalance() < 5) {
+                    std::cout << "You don't have not enough balance in your "
+                                 "account. Please top up before booking a ride."
+                              << std::endl;
                     return;
                 }
                 paymentMethod = new AccountBalance();
@@ -124,14 +135,18 @@ void Rider::bookRide() {
                 break;
         }
 
+        // Pay using the chosen payment method
         paymentMethod->pay(5);
 
-        switch(userRideOption) {
+        // Create ride based on the chosen ride type
+        switch (userRideOption) {
             case 1:
-                rideTypeChosen = new Ride(std::time(0), this, 5, origin, destination, paymentMethod);
+                rideTypeChosen = new Ride(std::time(0), this, 5, origin,
+                                          destination, paymentMethod);
                 break;
             case 2:
-                rideTypeChosen = new LuxuryRide(std::time(0), this, 5, origin, destination, paymentMethod);
+                rideTypeChosen = new LuxuryRide(std::time(0), this, 5, origin,
+                                                destination, paymentMethod);
                 break;
             default:
                 break;
@@ -143,14 +158,20 @@ void Rider::bookRide() {
 
         std::cout << std::endl;
 
-        while(isRideConfirmed == false) {
-            if(secondsWaited > 5) {
-                std::cout << std::endl << "Unfortunately, there is no driver at the moment. Please try booking again later." << std::endl;
+        // Search for drivers if ride is not confirmed
+        while (isRideConfirmed == false) {
+            // Reject the booking if there is no drivers after 10 seconds
+            if (secondsWaited > 5) {
+                std::cout << std::endl
+                          << "Unfortunately, there is no driver at the moment. "
+                             "Please try booking again later."
+                          << std::endl;
                 break;
             }
 
+            // Sleep timeout to prevent overloading in the program
             secondsWaited++;
-            std::cout << "Finding drivers..." << std::endl; 
+            std::cout << "Finding drivers..." << std::endl;
             sleep(2);
 
             std::string currentLine;
@@ -158,44 +179,55 @@ void Rider::bookRide() {
             std::ifstream fileStream(databasePath);
 
             // Read the entire file line by line
+            // Confirm ride if the driver is not booked and is available
             while (getline(fileStream, currentLine)) {
-                if(currentLine.length() > 0) {
-                    std::vector<std::string> currentDriver = splitString(currentLine, ",");
-                    if(currentDriver[1] == "isNotBooked") {
+                if (currentLine.length() > 0) {
+                    std::vector<std::string> currentDriver =
+                        splitString(currentLine, ",");
+                    if (currentDriver[1] == "isNotBooked") {
                         isRideConfirmed = true;
                         confirmedDriver = currentDriver;
                         break;
                     }
-                    
                 }
             }
 
             fileStream.close();
 
-            if(isRideConfirmed == true) {
+            // Break the finding drivers loop if ride is confirmed
+            if (isRideConfirmed == true) {
                 break;
             }
         }
 
-        if(isRideConfirmed == true) {
+        if (isRideConfirmed == true) {
             std::cout << std::endl << "Found driver!" << std::endl;
 
+            // State when driver is booked and not booked
             std::string prevDriverEntry = confirmedDriver[0] + ",isNotBooked";
             std::string newDriverEntry = confirmedDriver[0] + ",isBooked";
 
-            updateEntryInDatabase(prevDriverEntry, "availableDrivers", newDriverEntry, true);
+            // Update database to reflect that the driver is now booked
+            updateEntryInDatabase(prevDriverEntry, "availableDrivers",
+                                  newDriverEntry, true);
 
+            // Allow rider to use the amenities of the ride
             rideTypeChosen->useAmenities();
-            if(isPayWithAccountBalance == true) {
+
+            // Deduct from account balance after ride, if user chose account
+            // balance
+            if (isPayWithAccountBalance == true) {
                 setCurrentBalance(getCurrentBalance() - 5);
             }
 
-            updateEntryInDatabase(newDriverEntry, "availableDrivers", prevDriverEntry, true);
+            // Update database to reflect that driver is no longer booked
+            updateEntryInDatabase(newDriverEntry, "availableDrivers",
+                                  prevDriverEntry, true);
 
+            // Delete appropriate objects
             delete rideTypeChosen;
             rideTypeChosen = nullptr;
         }
-
     }
 }
 

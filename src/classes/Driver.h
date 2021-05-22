@@ -6,9 +6,8 @@
 
 #include "User.h"
 
-class Driver: public User
-{
-public:
+class Driver : public User {
+  public:
     Driver();
 
     void drive();
@@ -17,7 +16,7 @@ public:
 
     ~Driver();
 
-private:
+  private:
     bool isAvailableToDrive;
 
     void setAvailableToDrive(bool state);
