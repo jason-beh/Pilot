@@ -4,6 +4,12 @@
 #include <string>
 #include <limits>
 
+/**
+ * Get user int input
+ * 
+ * @param std::string instruction (Inline instruction to display to users)
+ * @return int data (Int inputted by the user)
+ */
 int getUserNumberInput(std::string instruction) {
     bool prompt = true;
     int number;

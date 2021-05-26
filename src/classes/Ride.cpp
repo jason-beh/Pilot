@@ -5,8 +5,8 @@
 
 #include "../utils/generateUserOptions.h"
 
-using namespace std;
 
+// Constructor
 Ride::Ride(time_t createdAt, Rider *rider, int price, std::string origin,
            std::string destination, PaymentMethod *paymentMethod) {
     this->createdAt = createdAt;
@@ -17,6 +17,11 @@ Ride::Ride(time_t createdAt, Rider *rider, int price, std::string origin,
     this->paymentMethod = paymentMethod;
 }
 
+/**
+ * Enable user to use Ride amenities
+ * @param
+ * @return
+ */
 void Ride::useAmenities() {
     // Display amenities choices
     std::cout << std::endl
@@ -46,4 +51,5 @@ void Ride::useAmenities() {
     }
 };
 
+// Destructor
 Ride::~Ride() {}

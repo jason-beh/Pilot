@@ -4,6 +4,12 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/updateEntryInDatabase.h"
 
+/**
+ * Test sign up and book ride
+ * 
+ * @param
+ * @return
+ */
 int main() {
     authController();
 

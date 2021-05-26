@@ -4,6 +4,12 @@
 
 #include "../../utils/splitString.h"
 
+/**
+ * Test splitString
+ * 
+ * @param
+ * @return
+ */
 int main() {
     std::vector<std::string> testVector = {"hello", "hello", "hello"};
     assert(splitString("hello,hello,hello", ",") == testVector);

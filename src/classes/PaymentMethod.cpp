@@ -2,8 +2,8 @@
 
 #include <string>
 
-using namespace std;
-
+// Constructor
 PaymentMethod::PaymentMethod() {}
 
+// Destructor
 PaymentMethod::~PaymentMethod() {}

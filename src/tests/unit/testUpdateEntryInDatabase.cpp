@@ -6,6 +6,12 @@
 #include "../../utils/updateEntryInDatabase.h"
 #include "../../utils/getEntryInDatabase.h"
 
+/**
+ * Test updateEntryInDatabase
+ * 
+ * @param
+ * @return
+ */
 int main() {
     remove("src/database/testAuth.txt");
 

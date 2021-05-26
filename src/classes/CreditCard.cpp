@@ -9,10 +9,15 @@
 #include "../utils/getUserLongNumberInput.h"
 #include "../utils/getUserNumberInput.h"
 
-using namespace std;
 
+// Constructor
 CreditCard::CreditCard() {}
 
+/**
+ * Pay using CreditCard
+ * @param int amount (Amount of money that the user will pay)
+ * @return bool (true if the payment is successful)
+ */
 bool CreditCard::pay(int amount) {
     // Obtain user input
     long int creditCardNumber = getUserLongNumberInput("Credit Card Number: ");
@@ -44,4 +49,5 @@ bool CreditCard::pay(int amount) {
     return true;
 }
 
+// Destructor
 CreditCard::~CreditCard() {}

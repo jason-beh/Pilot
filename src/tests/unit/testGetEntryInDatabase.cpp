@@ -5,6 +5,12 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/getEntryInDatabase.h"
 
+/**
+ * Test getEntryInDatabase
+ * 
+ * @param
+ * @return
+ */
 int main() {
     remove("src/database/testAuth.txt");
     std::cout << "getEntryInDatabase ";

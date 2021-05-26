@@ -2,6 +2,12 @@
 
 #include "../../utils/getUserLongNumberInput.h"
 
+/**
+ * Test getUserLongNumberInput
+ * 
+ * @param
+ * @return
+ */
 int main() {
     getUserLongNumberInput("Enter your decision here: ");
 

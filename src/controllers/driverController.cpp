@@ -7,6 +7,11 @@
 #include "../utils/generateUserOptions.h"
 #include "driverController.h"
 
+/**
+ * Driver controller to determine user's action at the menu
+ * @param
+ * @return
+ */
 void driverController(Driver* driver) {
     bool quitApp = false;
 
@@ -22,8 +27,8 @@ void driverController(Driver* driver) {
     std::cout << "1. Drive" << std::endl;
     std::cout << "2. Exit" << std::endl;
 
+    // Get driver's current decision
     int driverDecision = generateUserOptions(2);
-
     switch (driverDecision) {
         case 1:
             driver->drive();
@@ -33,6 +38,7 @@ void driverController(Driver* driver) {
             break;
     }
 
+    // Recursively call the function if the driver does not want to quit
     if(quitApp == false) {
         driverController(driver);
     } 

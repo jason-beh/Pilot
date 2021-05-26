@@ -2,6 +2,13 @@
 #include <vector>
 #include <string>
 
+/**
+ * Split string based on delimeter
+ * 
+ * @param std::string inputString (Input string of the sentence)
+ * @param std::string delimiter (Delimiter to split the string into vector of strings)
+ * @return std::vector<std::string> data (Split string based on delimeter in vector form)
+ */
 std::vector<std::string> splitString(std::string inputString, std::string delimiter) {
     std::vector<std::string> splitArray = {};
 

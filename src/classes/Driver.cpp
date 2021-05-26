@@ -13,22 +13,54 @@
 #include "../utils/updateEntryInDatabase.h"
 #include "User.h"
 
-Driver::Driver() { bool isAvailableToDrive = false; }
+// Constructor
+Driver::Driver() { 
+    bool isAvailableToDrive = false; 
+}
 
-void Driver::setAvailableToDrive(bool state) { isAvailableToDrive = state; };
+/**
+ * Set the state of availableToDrive
+ * @param bool state (true means availableToDrive, while false means the opposite)
+ * @return 
+ */
+void Driver::setAvailableToDrive(bool state) { 
+    isAvailableToDrive = state; 
+};
 
-bool Driver::getAvailableToDrive() { return isAvailableToDrive; };
+/**
+ * Get the state of availableToDrive
+ * @param 
+ * @return bool state (true means availableToDrive, while false means the opposite)
+ */
+bool Driver::getAvailableToDrive() { 
+    return isAvailableToDrive; 
+};
 
-// Create new wrapper function that wraps setCurrentBalance from User
+/**
+ * Create new wrapper function that wraps setCurrentBalance from User
+ * to create abstraction on databaseName
+ * @param int amount (Amount of balance)
+ * @return
+ */
 void Driver::setCurrentBalance(int amount) {
     User::setCurrentBalance(amount, "balanceDriver");
 }
 
-// Create new wrapper function that wraps getCurrentBalance from User
+/**
+ * Create new wrapper function that wraps getCurrentBalance from User
+ * to create abstraction on databaseName
+ * @param 
+ * @return int amount (Amount of balance)
+ */
 int Driver::getCurrentBalance() {
     return User::getCurrentBalance("balanceDriver");
 }
 
+/**
+ * Enable driver to be able to receive clients to fetch riders
+ * @param 
+ * @return 
+ */
 void Driver::drive() {
     std::string username = getUsername();
 
@@ -119,4 +151,5 @@ void Driver::drive() {
     }
 };
 
+// Destructor
 Driver::~Driver() {}

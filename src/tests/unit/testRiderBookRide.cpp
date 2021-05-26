@@ -5,6 +5,12 @@
 #include "../../classes/Rider.h"
 #include "../../classes/Cash.h"
 
+/**
+ * Test Rider Book Ride
+ * 
+ * @param
+ * @return
+ */
 int main() {
     Rider* rider = new Rider();
 

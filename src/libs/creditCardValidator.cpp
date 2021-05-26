@@ -1,9 +1,13 @@
 // Code retrieved from https://www.geeksforgeeks.org/program-credit-card-number-validation/
+
+
+
 #include "creditCardValidator.h"
 
 // C++ program to check if a given credit
 // card is valid or not.
 #include <iostream>
+
 using namespace std;
 
 // Return this number if it is a single digit, otherwise,

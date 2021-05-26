@@ -4,6 +4,12 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/updateEntryInDatabase.h"
 
+/**
+ * Test createEntryInDatabase
+ * 
+ * @param
+ * @return
+ */
 int main() {
     createEntryInDatabase("test,10005", "authRider");
 

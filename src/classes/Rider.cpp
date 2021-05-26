@@ -23,16 +23,36 @@
 #include "Ride.h"
 #include "User.h"
 
-Rider::Rider() { int currentBalance = 0; }
+// Constructor
+Rider::Rider() { 
+    int currentBalance = 0; 
+}
 
+/**
+ * Create new wrapper function that wraps setCurrentBalance from User
+ * to create abstraction on databaseName
+ * @param int amount (Amount of balance)
+ * @return
+ */
 void Rider::setCurrentBalance(int amount) {
     User::setCurrentBalance(amount, "balanceRider");
 }
 
+/**
+ * Create new wrapper function that wraps getCurrentBalance from User
+ * to create abstraction on databaseName
+ * @param 
+ * @return int amount (Amount of balance)
+ */
 int Rider::getCurrentBalance() {
     return User::getCurrentBalance("balanceRider");
 }
 
+/**
+ * Topup money into the Rider's account based on the paymentMethod selected in the prompt
+ * @param 
+ * @return 
+ */
 bool Rider::topUp() {
     // Prompt user to provide topup amount
     std::cout << "How much would you like to topup?" << std::endl;
@@ -69,6 +89,11 @@ bool Rider::topUp() {
     return isTopUpSuccessful;
 };
 
+/**
+ * Allow Rider to book a Ride to go from one place to another
+ * @param 
+ * @return 
+ */
 void Rider::bookRide() {
     // Prompt ride origin and destination
     std::string origin = getUserStringInput("Current Location: ", true);
@@ -231,4 +256,5 @@ void Rider::bookRide() {
     }
 }
 
+// Destructor
 Rider::~Rider() {}

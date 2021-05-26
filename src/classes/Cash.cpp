@@ -3,10 +3,14 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
+// Constructor
 Cash::Cash() {}
 
+/**
+ * Pay using Cash
+ * @param int amount (Amount of money that the user will pay)
+ * @return bool (true if the payment is successful)
+ */
 bool Cash::pay(int amount) {
     std::cout << "Awesome! Please make sure to pay AUD" << amount
               << " once you have reached your destination." << std::endl;
@@ -14,4 +18,5 @@ bool Cash::pay(int amount) {
     return true;
 }
 
+// Destructor
 Cash::~Cash() {}

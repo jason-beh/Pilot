@@ -8,6 +8,15 @@
 
 #include "updateEntryInDatabase.h"
 
+/**
+ * Retrieve a vector of the split entry based on the search database query
+ * 
+ * @param std::string databaseEntry (The database search entry to match with the data in the database)
+ * @param std::string databaseName (The exact file name without the .txt extension)
+ * @param std::string newDatabaseEntry (The new database entry that will replace the matched search entry, if the searched entry is found)
+ * @param bool mustSearchMatch (true means the searchEntry must match the current entry of database to return as vector, false means substring is accepted to return as vector)
+ * @return std::vector<std::string> (databaseEntry that is split by "," into a vector)
+ */
 bool updateEntryInDatabase(std::string databaseEntry, std::string databaseName, std::string newDatabaseEntry, bool mustSearchMatch)
 {
     std::string currentLine;

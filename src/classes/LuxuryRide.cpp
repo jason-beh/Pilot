@@ -1,12 +1,13 @@
 #include "LuxuryRide.h"
+#include "Ride.h"
 
 #include <iostream>
 #include <string>
 
 #include "../utils/generateUserOptions.h"
 #include "../utils/getUserStringInput.h"
-#include "Ride.h"
 
+// Constructor
 LuxuryRide::LuxuryRide(time_t createdAt, Rider *rider, int price,
                        std::string origin, std::string destination,
                        PaymentMethod *paymentMethod)
@@ -17,6 +18,11 @@ LuxuryRide::LuxuryRide(time_t createdAt, Rider *rider, int price,
     currentMovie = "";
 }
 
+/**
+ * Enable user to use LuxuryRide amenities
+ * @param
+ * @return
+ */
 void LuxuryRide::useAmenities() {
 
     // Display amenities choices
@@ -81,4 +87,5 @@ void LuxuryRide::useAmenities() {
     }
 };
 
+// Destructor
 LuxuryRide::~LuxuryRide() {}

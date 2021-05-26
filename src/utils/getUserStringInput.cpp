@@ -5,6 +5,12 @@
 #include <limits>
 #include <sstream>
 
+/**
+ * Get user string int input
+ * 
+ * @param std::string instruction (Inline instruction to display to users)
+ * @return string int data (String inputted by the user)
+ */
 std::string getUserStringInput(std::string instruction, bool isFirstPrompt) {
     bool prompt = true;
     std::string finalString = "";

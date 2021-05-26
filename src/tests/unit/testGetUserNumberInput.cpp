@@ -2,6 +2,12 @@
 
 #include "../../utils/getUserNumberInput.h"
 
+/**
+ * Test getUserNumberInput
+ * 
+ * @param
+ * @return
+ */
 int main() {
     getUserNumberInput("Enter your decision here: ");
 

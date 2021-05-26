@@ -10,6 +10,7 @@
 #include "../utils/getUserStringInput.h"
 #include "../utils/updateEntryInDatabase.h"
 
+// Constructor
 User::User() {
     isLoggedIn = false;
     username = "";
@@ -17,17 +18,60 @@ User::User() {
     currentBalance = 0;
 }
 
-std::string User::getUsername() { return username; }
+/**
+ * Get the string username
+ * @param 
+ * @return std::string username (the username saved in the User object)
+ */
+std::string User::getUsername() { 
+    return username; 
+}
 
-bool User::getIsLoggedIn() { return isLoggedIn; };
+/**
+ * Get the state of whether the User is logged in or not
+ * @param 
+ * @return bool state (true means logged in, while false means not logged in)
+ */
+bool User::getIsLoggedIn() { 
+    return isLoggedIn; 
+};
 
+/**
+ * Set the state of the User's login status
+ * 
+ * @param bool state (true means logged in, while false means not logged in)
+ * @return 
+ */
 void User::setIsLoggedIn(bool isLoggedInStatus) {
     isLoggedIn = isLoggedInStatus;
 };
 
-void User::setUsername(std::string newUsername) { username = newUsername; };
-void User::setPassword(std::string newPassword) { password = newPassword; };
+/**
+ * Set the User's username
+ * 
+ * @param std::string newUsername
+ * @return 
+ */
+void User::setUsername(std::string newUsername) { 
+    username = newUsername; 
+};
 
+/**
+ * Set the User's password
+ * 
+ * @param std::string newPassword
+ * @return 
+ */
+void User::setPassword(std::string newPassword) { 
+    password = newPassword; 
+};
+
+/**
+ * Allow user to signup
+ * 
+ * @param std::string userType ("Rider" or "Driver" to access database)
+ * @return bool status (true means signup is successful, false means signup is not successful)
+ */
 bool User::signUp(std::string userType) {
     std::cout << "-----------------------" << std::endl;
     std::cout << "Sign up as " << userType << std::endl;
@@ -80,6 +124,13 @@ bool User::signUp(std::string userType) {
 
     return true;
 };
+
+/**
+ * Allow user to login
+ * 
+ * @param std::string userType ("Rider" or "Driver" to access database)
+ * @return bool status (true means login is successful, false means login is not successful)
+ */
 bool User::login(std::string userType) {
     std::cout << "-----------------------" << std::endl;
     std::cout << "Login as " << userType << std::endl;
@@ -120,6 +171,13 @@ bool User::login(std::string userType) {
     return true;
 };
 
+/**
+ * Set currentBalance and update the currentBalance in the respective database
+ * 
+ * @param int amount (Amount to update in currentBalance)
+ * @param std::string databaseName (Database name of "Rider" or "Driver")
+ * @return 
+ */
 void User::setCurrentBalance(int amount, std::string databaseName) {
     std::string username = getUsername();
     std::string newDatabaseEntry = username + "," + std::to_string(amount);
@@ -131,6 +189,12 @@ void User::setCurrentBalance(int amount, std::string databaseName) {
     currentBalance = amount;
 }
 
+/**
+ * Get User's currentBalance from database and sync it with the User object's currentBalance
+ * 
+ * @param std::string databaseName (Database name of "Rider" or "Driver")
+ * @return int currentBalance (User's currentBalance)
+ */
 int User::getCurrentBalance(std::string databaseName) {
     // Perform database check if the current balance is 0 (Suitable when initialized)
     if (currentBalance == 0) {
@@ -156,4 +220,5 @@ int User::getCurrentBalance(std::string databaseName) {
     return currentBalance;
 }
 
+// Destructor
 User::~User() {}

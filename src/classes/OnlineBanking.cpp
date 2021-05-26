@@ -7,10 +7,14 @@
 
 #include "../utils/generateUserOptions.h"
 
-using namespace std;
-
+// Constructor
 OnlineBanking::OnlineBanking() {}
 
+/**
+ * Pay using OnlineBanking
+ * @param int amount (Amount of money that the user will pay)
+ * @return bool (true if the payment is successful)
+ */
 bool OnlineBanking::pay(int amount) {
     // Prompt user to choose type of bank
     std::cout << "Please choose the your preferred bank from the list below."
@@ -39,4 +43,5 @@ bool OnlineBanking::pay(int amount) {
     return true;
 }
 
+// Destructor
 OnlineBanking::~OnlineBanking() {}

@@ -3,6 +3,12 @@
 
 #include "../../classes/AccountBalance.h"
 
+/**
+ * Test AccountBalance pay
+ * 
+ * @param
+ * @return
+ */
 int main() {
     AccountBalance* accountBalance = new AccountBalance();
     bool isTopUpSuccessful = accountBalance->pay(10);

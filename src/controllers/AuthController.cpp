@@ -11,11 +11,23 @@
 #include <iostream>
 #include <string>
 
+/**
+ * Authentication controller to distinguish if users:
+ * 1. Wants to login or signup
+ * 2. Is a Driver or a Rider
+ * @param
+ * @return
+ */
 void authController()
 {
     bool isRider = isRiderOrDriver();
     bool isUserLogin = isUserWantsToLogin();
 
+    // Handle multiple scenarios:
+    // 1. Rider & Login
+    // 2. Rider & SignUp
+    // 3. Driver & Login
+    // 4. Driver & SignUp
     if(isRider == true) {
         
         Rider* rider = new Rider();
@@ -29,6 +41,7 @@ void authController()
 
         std::cout << "We hope to see you again, " << rider->getUsername() << "!" << std::endl;
 
+        // Free memory of rider
         delete rider;
         rider = nullptr;
 
@@ -44,12 +57,18 @@ void authController()
 
         std::cout << "We hope to see you again, " << driver->getUsername() << "!" << std::endl;
 
+        // Free memory of driver
         delete driver;
         driver = nullptr;
     }
     
 }
 
+/**
+ * Check if User is a Rider or a Driver
+ * @param
+ * @return bool state (true means the User is a Rider, false means the User is a Driver)
+ */
 bool isRiderOrDriver() {
     std::cout << "---------------------------------------" << std::endl;
     std::cout << "Welcome to Pilot!" << std::endl;
@@ -65,6 +84,11 @@ bool isRiderOrDriver() {
     return isRider;
 }
 
+/**
+ * Check if User wants to login or signup
+ * @param
+ * @return bool state (true means the User wants to login, false means the User wants to signup)
+ */
 bool isUserWantsToLogin() {
     std::cout << "Would you like to sign up for a new account or login?" << std::endl << std::endl;
 

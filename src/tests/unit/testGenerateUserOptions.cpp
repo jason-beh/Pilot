@@ -2,6 +2,12 @@
 
 #include "../../utils/generateUserOptions.h"
 
+/**
+ * Test generateUserOptions
+ * 
+ * @param
+ * @return
+ */
 int main() {
     // 5 inputs
     generateUserOptions(5);

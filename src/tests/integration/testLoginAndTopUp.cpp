@@ -4,6 +4,12 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/updateEntryInDatabase.h"
 
+/**
+ * Test login and topup
+ * 
+ * @param
+ * @return
+ */
 int main() {
     createEntryInDatabase("test,10005", "authRider");
     authController();

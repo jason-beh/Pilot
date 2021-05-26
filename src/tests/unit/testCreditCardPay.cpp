@@ -5,6 +5,12 @@
 #include "../../utils/createEntryInDatabase.h"
 #include "../../utils/updateEntryInDatabase.h"
 
+/**
+ * Test CreditCard pay
+ * 
+ * @param
+ * @return
+ */
 int main() {
     CreditCard* creditCard = new CreditCard();
     bool isTopUpSuccessful = creditCard->pay(10);

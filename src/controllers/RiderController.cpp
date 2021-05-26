@@ -7,6 +7,11 @@
 #include "../utils/generateUserOptions.h"
 #include "driverController.h"
 
+/**
+ * Driver controller to determine user's action at the menu
+ * @param
+ * @return
+ */
 void riderController(Rider* rider) {
     bool quitApp = false;
 
@@ -23,8 +28,8 @@ void riderController(Rider* rider) {
     std::cout << "2. Top Up" << std::endl;
     std::cout << "3. Exit App" << std::endl;
 
+    // Get rider's current decision
     int riderDecision = generateUserOptions(3);
-
     switch (riderDecision) {
         case 1:
             rider->bookRide();
@@ -37,6 +42,7 @@ void riderController(Rider* rider) {
             break;
     }
 
+    // Recursively call the function if the rider does not want to quit
     if(quitApp == false) {
         riderController(rider);
     } 
