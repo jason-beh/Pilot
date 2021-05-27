@@ -8,7 +8,7 @@ Pilot wants to become a major player in the competitive space of ride-hailing. T
 
 Although the exact business logic of how drivers and users interact via message queues and backend servers will not be implemented in this MVP, the user journey should be relatively similar.
 
-Duration of project: May 10 - May 20
+Project Duration: May 10 2021 - May 20 2021
 
 Built with C++ using OOP Methodology such as:
 - Polymorphism
