@@ -33,7 +33,7 @@ Testing was done without using any testing framework like Google Test. However, 
 
 ![UML](repo/UML.png)
 
-Note: The full diagram of the PILOT's UML can be found at [here](https://www.google.com) 
+Note: The full diagram of the PILOT's UML can be found at [here](https://lucid.app/lucidchart/dec30d7e-0ad9-40ee-95d4-2998491a5844/view) 
 
 ## User Interface
 
